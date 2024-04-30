@@ -14,6 +14,7 @@ public class Receipt {
 
     /**
      * Creates receipt DTO, with the below params
+     * @param date date of payment
      * @param initialPrice price of sale before any discounts are applied
      * @param finalPrice price of sale after relevant discounts are applied, 
      * @param amountPaid the amount paid by the customer
