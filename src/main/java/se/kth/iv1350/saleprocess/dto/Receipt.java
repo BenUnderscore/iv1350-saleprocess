@@ -1,16 +1,15 @@
 package se.kth.iv1350.saleprocess.dto;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.time.LocalDateTime;
 
-
-class Receipt {
+public class Receipt {
 
     int initialPrice;
     int finalPrice;
     int amountPaid;
     int change;
-    Date date;
+    LocalDateTime date;
     ArrayList<ItemInfo> itemList;
 
     /**
@@ -21,15 +20,12 @@ class Receipt {
      * @param change the change returned to the customer after paying 
      * @param itemList a list of all items that have been in the purchase
      */
-    public Receipt(int initialPrice, int finalPrice, int amountPaid, int change, ArrayList<ItemInfo> itemList){
+    public Receipt(LocalDateTime date, int initialPrice, int finalPrice, int amountPaid, int change, ArrayList<ItemInfo> itemList){
+        this.date = date;
         this.initialPrice = initialPrice;
         this.finalPrice = finalPrice;
         this.amountPaid = amountPaid;
         this.change = change;
         this.itemList = itemList;
-        this.date = new Date();
-
     }
-
-
 }
