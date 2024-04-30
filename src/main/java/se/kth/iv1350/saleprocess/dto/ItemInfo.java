@@ -11,7 +11,6 @@ class ItemInfo {
 
     public ItemInfo(){
 
-    
 
     }
 
