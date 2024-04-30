@@ -28,7 +28,6 @@ public class Sale {
         }
         newItem.quantity = itemQuantity;
         itemList.add(newItem);
-
     }
 
     /**
