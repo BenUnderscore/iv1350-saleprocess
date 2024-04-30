@@ -1,11 +1,11 @@
 package se.kth.iv1350.saleprocess.dto;
 
-class ItemInfo {
+class Receipt {
 
 
 
 }
-public Class ItemInfo {
+public Class Receipt {
     String name;
     StReceipt
     int vat;
