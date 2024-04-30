@@ -1,6 +1,6 @@
 package se.kth.iv1350.saleprocess.dto;
 
-class RunningStatus{
+public class RunningStatus {
     int runningTotal;
     int itemPrice;
     String itemDescription;

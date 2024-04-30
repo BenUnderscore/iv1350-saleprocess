@@ -3,7 +3,7 @@ package se.kth.iv1350.saleprocess.dto;
 public class ItemInfo {
 
     public String name;
-    public String decription;
+    public String description;
     public String id;
     public int price;
     public int vat;
@@ -11,7 +11,7 @@ public class ItemInfo {
 
     public ItemInfo(String name, String description, String id, int price, int vat, int quantity){
         this.name = name;
-        this.decription = description;
+        this.description = description;
         this.id = id;
         this.price = price;
         this.vat = vat;
