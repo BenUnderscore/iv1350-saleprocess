@@ -36,6 +36,14 @@ public class InventorySystemHandler {
             "Pilot Rondo, mechanical pencil, 0.7mm",
             25
         );
+
+        addItem(
+            "Nyckelmix 120g",
+            "jkl012",
+            6400,
+            "drink mix, unlocks senses",
+            12
+        );
     }
     
     public InventorySystemHandler() {
