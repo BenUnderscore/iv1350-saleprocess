@@ -1,18 +1,21 @@
 package se.kth.iv1350.saleprocess.dto;
 
-class ItemInfo {
+public class ItemInfo {
 
-    String name;
-    String id;
-    int price;
-    String decription;
-    int vat;
-    int quantity;   
+    public String name;
+    public String decription;
+    public String id;
+    public int price;
+    public int vat;
+    public int quantity;   
 
-    public ItemInfo(){
-
-    
-
+    public ItemInfo(String name, String description, String id, int price, int vat, int quantity){
+        this.name = name;
+        this.decription = description;
+        this.id = id;
+        this.price = price;
+        this.vat = vat;
+        this.quantity = quantity;
     }
 
 }
