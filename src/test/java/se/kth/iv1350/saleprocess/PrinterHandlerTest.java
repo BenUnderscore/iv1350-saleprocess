@@ -1,7 +1,5 @@
 package se.kth.iv1350.saleprocess;
 
-import static org.junit.Assert.assertTrue;
-
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.ArrayList;

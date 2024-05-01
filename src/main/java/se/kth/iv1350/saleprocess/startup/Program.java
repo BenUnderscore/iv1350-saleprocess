@@ -1,7 +1,5 @@
 package se.kth.iv1350.saleprocess.startup;
 
-import java.util.concurrent.ThreadPoolExecutor.DiscardOldestPolicy;
-
 import se.kth.iv1350.saleprocess.integrations.AccountingSystemHandler;
 import se.kth.iv1350.saleprocess.integrations.DiscountRegistryHandler;
 import se.kth.iv1350.saleprocess.integrations.InventorySystemHandler;
