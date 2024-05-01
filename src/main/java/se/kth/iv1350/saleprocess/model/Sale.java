@@ -15,7 +15,6 @@ public class Sale {
 
     /**
      * Adds a new item to the sale list. If an item is already in the list, the method will just increase the quantity of the object. Otherwise, it will add object to the list.
-     * 
      * @param newItem The item to add/modify
      * @param itemQuantity Quantity of the newItem
      */
@@ -31,12 +30,10 @@ public class Sale {
     }
 
     /**
-     * 
      * Calculates total price including VAT
-     * 
      * @return total price including VAT
      */
-    public int getTotal(){
+    public int calculateTotal(){
         int total = 0;
         for(ItemInfo itemFromList : itemList){
             total += itemFromList.price * itemFromList.quantity;
@@ -45,12 +42,11 @@ public class Sale {
     }
 
     /**
-     * Creates object SaleInfo
-     * 
-     * @return new SaleInfo object
+     * Creates an object of type SaleInfo
+     * @return Object with all information about a sale
      */
-    public SaleInfo getInfo(){
-        int total = this.getTotal();
+    public SaleInfo finilizeSaleInfo(){
+        int total = this.calculateTotal();
         
         SaleInfo saleInfo = new SaleInfo(itemList, total);
 

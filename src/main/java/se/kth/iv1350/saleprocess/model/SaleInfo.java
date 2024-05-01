@@ -29,6 +29,11 @@ public class SaleInfo {
         return postDiscountPrice;
     }
 
+    /**
+     * Puts all of the sale information, including payment date and time on a receipt
+     * @param amountPaid How much customer paid
+     * @return Receipt object with sale information
+     */
     public Receipt createReceipt(int amountPaid){
         LocalDateTime currentDate = LocalDateTime.now();
         int change = amountPaid - postDiscountPrice;
@@ -36,6 +41,11 @@ public class SaleInfo {
         return receipt;
     }
 
+    /**
+     * Applies discount to the sale
+     * @param DiscountRegistryHandler Discount registry handler
+     * @param customerID Customer's identification
+     */
     public void applyDiscount(DiscountRegistryHandler DiscountRegistryHandler, String customerID){
         /* Discount logic */
     } 

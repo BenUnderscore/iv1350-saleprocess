@@ -7,6 +7,9 @@ public class AccountingSystemHandler {
 
     }
 
+    /**
+     * Logs sale into the external accounting system. Currentely represented by a sysout message and does nothing else, as we do not know how the external system works.
+     */
     public void logSale(Receipt receipt){
         
         /* Log sale code here */

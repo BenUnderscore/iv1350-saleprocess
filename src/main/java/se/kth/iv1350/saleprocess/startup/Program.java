@@ -9,15 +9,19 @@ import se.kth.iv1350.saleprocess.view.View;
 
 public class Program{
     public static void main(String[] args){
-        startup();
+        View view = startup();
     }
 
-    public static void startup(){
+    /**
+     * Creates integrations objects, view and controller, distributing relevant objects between them.
+     * @return View object
+     */
+    public static View startup(){
         AccountingSystemHandler accountingSystemHandler = new AccountingSystemHandler();
         DiscountRegistryHandler discountRegistryHandler = new DiscountRegistryHandler();
         InventorySystemHandler inventorySystemHandler = new InventorySystemHandler();
         PrinterHandler printerHandler = new PrinterHandler();
         Controller controller = new Controller(accountingSystemHandler, discountRegistryHandler, inventorySystemHandler, printerHandler);
-        View view = new View(controller);        
+        return new View(controller);        
     }
 }

@@ -37,20 +37,24 @@ public class PrinterHandler {
         return total;
     }
 
+    /**
+     * Sends call to an external printer to print a sale receipt
+     * @param receipt Sale's receipt with all relevant information
+     */
     public void printReceipt(Receipt receipt) {
         StringBuilder stringBuilder = new StringBuilder();
 
         stringBuilder.append("------------------ Begin receipt -------------------\n");
         stringBuilder.append("Time of Sale: ");
-        stringBuilder.append(receipt.date.format(DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm")));
+        stringBuilder.append(receipt.dateAndTime.format(DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm")));
         stringBuilder.append("\n");
 
         appendItems(receipt.itemList, stringBuilder);
         stringBuilder.append(
             String.format(
                 "Total: %38d.%02d SEK%n",
-                receipt.finalPrice / 100,
-                receipt.finalPrice % 100
+                receipt.postDiscountPrice / 100,
+                receipt.postDiscountPrice % 100
             )
         );
 

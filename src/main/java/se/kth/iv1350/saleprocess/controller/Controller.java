@@ -21,6 +21,7 @@ public class Controller {
     private InventorySystemHandler inventorySystemHandler;
     private PrinterHandler printerHandler;
 
+    // Models
     private SaleInfo saleInfo;
     private Sale sale;
     
@@ -42,7 +43,7 @@ public class Controller {
      * Asks inventory system handler to fetch an item, adds it to the sale and gets total sale price
      * @param itemID Item Identification
      * @param quantity Amount of the same item
-     * @return Running sale total price, item's price and item's name
+     * @return Running sale total price, item's price and item's description
      */
     public RunningStatus registerItems(String itemID, int quantity){
         ItemInfo newItem = inventorySystemHandler.getItem(itemID);
@@ -50,9 +51,9 @@ public class Controller {
         /* If item ID is not found, throw exception */
 
         sale.addItems(newItem, quantity);
-        int runningtotal = sale.getTotal();
+        int runningtotal = sale.calculateTotal();
 
-        RunningStatus status = new RunningStatus(runningtotal, newItem.price, newItem.name);
+        RunningStatus status = new RunningStatus(runningtotal, newItem.price, newItem.description);
 
         return status;
     }
@@ -62,7 +63,7 @@ public class Controller {
      * @return Total price
      */
     public int endSale(){
-        saleInfo = sale.getInfo();
+        saleInfo = sale.finilizeSaleInfo();
 
         int currentTotal = saleInfo.getPostDiscountPrice();
 
@@ -72,7 +73,7 @@ public class Controller {
     /**
      * Requests for discount from external system. Currentely is not implemented
      * @param customerID Customer identification
-     * @return discount total
+     * @return Discount total
      */
     public int requestDiscount(String customerID){
         // code
@@ -82,7 +83,7 @@ public class Controller {
     /**
      * Finalizes process. Asks for receipt, prints it, logs it and updates inventory.
      * @param amountPaid How much customer paid
-     * @return Change = AmountPaid - total discounter price
+     * @return Difference between amount paid and total price.
      */
     public int registerPayment(int amountPaid){
         Receipt receipt = saleInfo.createReceipt(amountPaid);

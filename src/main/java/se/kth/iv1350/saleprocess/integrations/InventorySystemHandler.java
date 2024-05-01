@@ -52,10 +52,20 @@ public class InventorySystemHandler {
         addExampleData();
     }
 
+    /**
+     * Fetches an item from an external inventory system
+     * @param id Item's identification
+     * @return An ItemInfo object
+     */
     public ItemInfo getItem(String id) {
         return database.getOrDefault(id, null);
     }
 
+    /**
+     * Makes an update call to an external inventory system
+     * @param itemList Full item list in a sale
+     */
     public void updateInventory(ArrayList<ItemInfo> itemList) {
+        System.out.println("Inventory updated.");
     }
 }
