@@ -8,9 +8,7 @@ import se.kth.iv1350.saleprocess.controller.Controller;
 import se.kth.iv1350.saleprocess.view.View;
 
 public class Program{
-    public static void main(){
-        System.out.println("Hello, world!");
-
+    public static void main(String[] args){
         startup();
     }
 
