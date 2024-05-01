@@ -14,6 +14,7 @@ public class AccountingSystemHandler {
         /* Break down "receipt" into relevant parts */
 
         /* Call external accounting system and send relevant parts of receipt or the whole receipt */
+        System.out.println("Sale was logged to the external accounting system.");
         
     }
 }

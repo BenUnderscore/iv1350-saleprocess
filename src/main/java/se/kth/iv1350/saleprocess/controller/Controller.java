@@ -64,7 +64,7 @@ public class Controller {
     public int endSale(){
         saleInfo = sale.getInfo();
 
-        int currentTotal = saleInfo.getCurrentTotal();
+        int currentTotal = saleInfo.getPostDiscountPrice();
 
         return currentTotal;
     }

@@ -9,34 +9,36 @@ import se.kth.iv1350.saleprocess.dto.Receipt;
 
 public class SaleInfo {
     private ArrayList<ItemInfo> itemList;
-    private int totalPrice;
-    private int currentTotal;
+    private int preDiscountPrice;
+    private int postDiscountPrice;
 
     public SaleInfo(ArrayList<ItemInfo> itemList, int totalPrice ){
         this.itemList = itemList;
-        this.totalPrice = totalPrice;
+        this.preDiscountPrice = totalPrice;
     }
 
     public ArrayList<ItemInfo> getItemList(){
         return itemList;
     }
 
-    public int getTotalPrice() {
-        return totalPrice;
+    public int getPreDiscountPrice() {
+        return preDiscountPrice;
     }
 
-    public int getCurrentTotal() {
-        return currentTotal;
+    public int getPostDiscountPrice() {
+        return postDiscountPrice;
     }
 
     public Receipt createReceipt(int amountPaid){
         LocalDateTime currentDate = LocalDateTime.now();
-        int change = amountPaid - currentTotal;
-        Receipt receipt = new Receipt(currentDate, totalPrice, currentTotal, amountPaid, change, itemList);
+        int change = amountPaid - postDiscountPrice;
+        Receipt receipt = new Receipt(currentDate, preDiscountPrice, postDiscountPrice, amountPaid, change, itemList);
         return receipt;
     }
 
     public void applyDiscount(DiscountRegistryHandler DiscountRegistryHandler, String customerID){
         /* Discount logic */
     } 
+
+
 }
