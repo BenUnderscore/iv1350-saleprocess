@@ -1,5 +1,6 @@
 package se.kth.iv1350.saleprocess.integrations;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -55,6 +56,6 @@ public class InventorySystemHandler {
         return database.getOrDefault(id, null);
     }
 
-    public void updateInventory(ItemInfo[] itemList) {
+    public void updateInventory(ArrayList<ItemInfo> itemList) {
     }
 }

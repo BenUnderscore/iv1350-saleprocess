@@ -5,12 +5,12 @@ import java.time.LocalDateTime;
 
 public class Receipt {
 
-    int initialPrice;
-    int finalPrice;
-    int amountPaid;
-    int change;
-    LocalDateTime date;
-    ArrayList<ItemInfo> itemList;
+    public int initialPrice;
+    public int finalPrice;
+    public int amountPaid;
+    public int change;
+    public LocalDateTime date;
+    public ArrayList<ItemInfo> itemList;
 
     /**
      * Creates receipt DTO, with the below params

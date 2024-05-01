@@ -17,11 +17,11 @@ public class Program{
     }
 
     public static void startup(){
-        PrinterHandler printerHandler = new PrinterHandler();
-        InventorySystemHandler inventorySystemHandler = new InventorySystemHandler();
-        DiscountRegistryHandler discountRegistryHandler = new DiscountRegistryHandler();
         AccountingSystemHandler accountingSystemHandler = new AccountingSystemHandler();
-        Controller controller = new Controller(printerHandler, inventorySystemHandler, discountRegistryHandler, accountingSystemHandler);
+        DiscountRegistryHandler discountRegistryHandler = new DiscountRegistryHandler();
+        InventorySystemHandler inventorySystemHandler = new InventorySystemHandler();
+        PrinterHandler printerHandler = new PrinterHandler();
+        Controller controller = new Controller(accountingSystemHandler, discountRegistryHandler, inventorySystemHandler, printerHandler);
         View view = new View(controller);        
     }
 }
