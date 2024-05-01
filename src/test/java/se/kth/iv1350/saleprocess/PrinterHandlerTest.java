@@ -21,18 +21,18 @@ public class PrinterHandlerTest {
         ArrayList<ItemInfo> items = new ArrayList<ItemInfo>();
         items.add(new ItemInfo(
             "BigWheel Oatmeal",
+            "BigWheel Oatmeal 500g, whole grain oats, high fiber, gluten free",
             "abc123",
             2990,
-            "BigWheel Oatmeal 500g, whole grain oats, high fiber, gluten free",
             6,
             4
         ));
 
         items.add(new ItemInfo(
             "Nyckelmix 120g",
+            "drink mix, unlocks senses",
             "jkl012",
             6400,
-            "drink mix, unlocks senses",
             12,
             420
         ));

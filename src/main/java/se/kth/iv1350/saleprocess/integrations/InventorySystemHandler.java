@@ -10,7 +10,7 @@ public class InventorySystemHandler {
     private HashMap<String, ItemInfo> database;
 
     private void addItem(String name, String id, int price, String description, int vat) {
-        database.put(id, new ItemInfo(name, id, price, description, vat));
+        database.put(id, new ItemInfo(name, description, id, price, vat, 0));
     }
 
     private void addExampleData() {
