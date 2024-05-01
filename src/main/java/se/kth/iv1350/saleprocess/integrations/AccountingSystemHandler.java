@@ -1,7 +1,6 @@
 package se.kth.iv1350.saleprocess.integrations;
 
 import se.kth.iv1350.saleprocess.dto.Receipt;
-import se.kth.iv1350.saleprocess.dto.RunningStatus;
 
 public class AccountingSystemHandler {
     public AccountingSystemHandler(){
@@ -12,5 +11,9 @@ public class AccountingSystemHandler {
         
         /* Log sale code here */
 
+        /* Break down "receipt" into relevant parts */
+
+        /* Call external accounting system and send relevant parts of receipt or the whole receipt */
+        
     }
 }
