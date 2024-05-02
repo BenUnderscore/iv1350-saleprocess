@@ -10,6 +10,13 @@ import se.kth.iv1350.saleprocess.view.View;
 public class Program{
     public static void main(String[] args){
         View view = startup();
+
+        view.startSale();
+        view.scanOneItem("abc123");
+        view.scanOneItem("abc123");
+        view.scanOneItem("ghi789");
+        view.endSale();
+        view.registerPayment(10000);
     }
 
     /**
