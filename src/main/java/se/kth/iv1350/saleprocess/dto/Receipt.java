@@ -19,6 +19,7 @@ public class Receipt {
     public ArrayList<ItemInfo> itemList;
     /** VAT for the Sale */
     public int VAT;
+
     
     public Receipt(LocalDateTime dateAndTime, int preDiscountPrice, int postDiscountPrice, int amountPaid, int change, ArrayList<ItemInfo> itemList, int VAT){
         this.dateAndTime = dateAndTime;
