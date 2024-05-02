@@ -16,7 +16,7 @@ public class Program{
         view.scanOneItem("abc123");
         view.scanOneItem("ghi789");
         view.endSale();
-        view.registerPayment(10000);
+        view.registerPayment(12000);
     }
 
     /**
