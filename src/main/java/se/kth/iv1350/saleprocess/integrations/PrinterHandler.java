@@ -27,16 +27,6 @@ public class PrinterHandler {
         }
     }
 
-    private int calculateTotalVat(List<ItemInfo> items) {
-        //TODO: Have this logic somewhere other than the printer handler
-        int total = 0;
-        for(ItemInfo item : items) {
-            total += (item.price * item.quantity) * item.vat / 100;
-        }
-
-        return total;
-    }
-
     /**
      * Sends call to an external printer to print a sale receipt
      * @param receipt Sale's receipt with all relevant information
@@ -60,12 +50,11 @@ public class PrinterHandler {
 
         stringBuilder.append("\n");
 
-        int totalVat = calculateTotalVat(receipt.itemList);
         stringBuilder.append(
             String.format(
-                "VAT: %01d.%02d %n",
-                totalVat / 100,
-                totalVat % 100
+                "VAT: %01d.%02d SEK%n",
+                receipt.VAT / 100,
+                receipt.VAT % 100
             )
         );
 

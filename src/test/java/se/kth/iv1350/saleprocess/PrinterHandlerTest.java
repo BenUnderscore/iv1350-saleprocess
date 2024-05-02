@@ -50,7 +50,8 @@ public class PrinterHandlerTest {
             2699960,
             3000000,
             300040,
-            items
+            items,
+            348477
         );
 
         PrinterHandler printerHandler = new PrinterHandler();
@@ -64,7 +65,7 @@ public class PrinterHandlerTest {
             "Nyckelmix 120g          420 x 69.00 SEK 28980.00 SEK ",
             "Total:                                  26999.60 SEK",
             "",
-            "VAT: 3484.77 ",
+            "VAT: 3484.77 SEK",
             "",
             "Cash: 30000.00 SEK",
             "Change: 3000.40 SEK",
