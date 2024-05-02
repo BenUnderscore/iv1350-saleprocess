@@ -42,13 +42,12 @@ public class SaleInfo {
     }
 
     /**
-     * Applies discount to the sale
+     * Applies all eligible discounts to the sale, updating the post-discount price
      * @param DiscountRegistryHandler Discount registry handler
      * @param customerID Customer's identification
      */
-    public void applyDiscount(DiscountRegistryHandler DiscountRegistryHandler, String customerID){
-        /* Discount logic */
+    public void applyDiscounts(DiscountRegistryHandler discountRegistryHandler, String customerID) {
+        int discount = discountRegistryHandler.getDiscount(customerID, preDiscountPrice, itemList);
+        postDiscountPrice = preDiscountPrice - discount;
     } 
-
-
 }
