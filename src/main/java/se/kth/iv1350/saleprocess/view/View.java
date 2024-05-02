@@ -10,6 +10,10 @@ public class View {
         this.controller = controller;
     }
 
+    private static String formatPrice(int amount) {
+        return String.format("%01d.%02d", amount / 100, amount % 100);
+    }
+
     /**
      * Declares sale's beginning. Sale object is created in this step.
      */
@@ -25,10 +29,10 @@ public class View {
      */
     public void scanOneItem(String itemID){
         RunningStatus status = controller.registerItems(itemID, 1);
-        System.out.println("Running tota: " + status.runningTotal);
+        System.out.println("Running total: " + formatPrice(status.runningTotal));
         System.out.println("You added new item to sale!");
         System.out.println(status.itemDescription);
-        System.out.println("It costs: " + status.itemPrice);
+        System.out.println("It costs: " + formatPrice(status.itemPrice));
         System.out.println("-----------------------------------------");
     }
 
@@ -37,7 +41,7 @@ public class View {
      */
     public void endSale(){
         int total = controller.endSale();
-        System.out.println("Sale has ended with total price of " + total + " kr.");
+        System.out.println("Sale has ended with total price of " + formatPrice(total) + " kr.");
         System.out.println("-----------------------------------------");
     }
 
@@ -47,7 +51,7 @@ public class View {
      */
     public void registerPayment(int amount){  
         int change = controller.registerPayment(amount);
-        System.out.println("Customer paid " + amount + " kr, change is " + change + " kr.");
+        System.out.println("Customer paid " + formatPrice(amount) + " kr, change is " + formatPrice(change) + " kr.");
         System.out.println("-----------------------------------------");
     }
 
