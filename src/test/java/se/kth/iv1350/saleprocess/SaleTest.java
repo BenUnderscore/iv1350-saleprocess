@@ -33,7 +33,7 @@ public class SaleTest {
 
     @Test
     public void emptySale() {
-        Sale sale = new Sale(new ArrayList<ItemInfo>());
+        Sale sale = new Sale();
         SaleInfo saleInfo = sale.finalizeSaleInfo();
 
         assertEquals(0, saleInfo.getPreDiscountPrice());
@@ -43,7 +43,7 @@ public class SaleTest {
 
     @Test
     public void fullSale() {
-        Sale sale = new Sale(new ArrayList<ItemInfo>());
+        Sale sale = new Sale();
 
         sale.addItems(item1, 2);
         sale.addItems(item1, 4);

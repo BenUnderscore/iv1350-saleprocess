@@ -36,7 +36,7 @@ public class Controller {
      * Creates new sale object with an empty item list
      */
     public void startSale(){
-        sale = new Sale(new ArrayList<ItemInfo>());
+        sale = new Sale();
     }
 
     /**
@@ -83,7 +83,7 @@ public class Controller {
     /**
      * Finalizes process. Asks for receipt, prints it, logs it and updates inventory.
      * @param amountPaid How much customer paid
-     * @return Difference between amount paid and total price.
+     * @return Amount of change to be returned to the customer
      */
     public int registerPayment(int amountPaid){
         Receipt receipt = saleInfo.createReceipt(amountPaid);
