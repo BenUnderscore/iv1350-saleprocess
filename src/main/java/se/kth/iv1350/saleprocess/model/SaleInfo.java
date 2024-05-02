@@ -15,6 +15,7 @@ public class SaleInfo {
     public SaleInfo(ArrayList<ItemInfo> itemList, int totalPrice ){
         this.itemList = itemList;
         this.preDiscountPrice = totalPrice;
+        this.postDiscountPrice = totalPrice;
     }
 
     public ArrayList<ItemInfo> getItemList(){
