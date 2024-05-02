@@ -9,8 +9,8 @@ import java.util.ArrayList;
 public class Sale {
     private ArrayList<ItemInfo> itemList;
     
-    public Sale(ArrayList<ItemInfo> itemList){
-        this.itemList = itemList;
+    public Sale(){
+        this.itemList = new ArrayList<ItemInfo>();
     }
 
     /**
