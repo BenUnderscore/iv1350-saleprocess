@@ -15,32 +15,40 @@ public class View {
      */
     public void startSale(){
         controller.startSale();
+        System.out.println("A new sale has started.");
+        System.out.println("-----------------------------------------");
     }
 
     /**
      * Scans one item and registers it with quantity 1
      * @param itemID Item's identification
-     * @return Sale's status: total price, latest item's price and description
      */
-    public RunningStatus scanOneItem(String itemID){
-        return controller.registerItems(itemID, 1);
+    public void scanOneItem(String itemID){
+        RunningStatus status = controller.registerItems(itemID, 1);
+        System.out.println("Running tota: " + status.runningTotal);
+        System.out.println("You added new item to sale!");
+        System.out.println(status.itemDescription);
+        System.out.println("It costs: " + status.itemPrice);
+        System.out.println("-----------------------------------------");
     }
 
     /**
      * Declares sale's end. SaleInfo object is created in this step.
-     * @return Total sale's price
      */
-    public int endSale(){
-        return controller.endSale();
+    public void endSale(){
+        int total = controller.endSale();
+        System.out.println("Sale has ended with total price of " + total + " kr.");
+        System.out.println("-----------------------------------------");
     }
 
     /**
      * Registers payment, i.e. finilizes the sale 
      * @param amount Amount paid
-     * @return Change
      */
-    public int registerPayment(int amount){  
-        return controller.registerPayment(amount);
+    public void registerPayment(int amount){  
+        int change = controller.registerPayment(amount);
+        System.out.println("Customer paid " + amount + " kr, change is " + change + " kr.");
+        System.out.println("-----------------------------------------");
     }
 
 
