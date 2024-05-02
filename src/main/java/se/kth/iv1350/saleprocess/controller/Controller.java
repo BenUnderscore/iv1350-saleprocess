@@ -63,7 +63,7 @@ public class Controller {
      * @return Total price
      */
     public int endSale(){
-        saleInfo = sale.finilizeSaleInfo();
+        saleInfo = sale.finalizeSaleInfo();
 
         int currentTotal = saleInfo.getPostDiscountPrice();
 
@@ -76,8 +76,8 @@ public class Controller {
      * @return Discount total
      */
     public int requestDiscount(String customerID){
-        // code
-        return 0;
+        saleInfo.applyDiscounts(discountRegistryHandler, customerID);
+        return saleInfo.getPostDiscountPrice();
     }
 
     /**

@@ -45,7 +45,7 @@ public class Sale {
      * Creates an object of type SaleInfo
      * @return Object with all information about a sale
      */
-    public SaleInfo finilizeSaleInfo(){
+    public SaleInfo finalizeSaleInfo(){
         int total = this.calculateTotal();
         
         SaleInfo saleInfo = new SaleInfo(itemList, total);
