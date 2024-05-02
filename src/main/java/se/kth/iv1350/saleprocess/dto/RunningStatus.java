@@ -11,6 +11,6 @@ public class RunningStatus {
     public RunningStatus(int runningTotal, int itemPrice, String itemDescription){
         this.runningTotal = runningTotal;
         this.itemPrice = itemPrice;
-        this. itemDescription = itemDescription;
+        this.itemDescription = itemDescription;
     }
 }

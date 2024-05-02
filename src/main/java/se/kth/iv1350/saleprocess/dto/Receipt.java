@@ -17,13 +17,16 @@ public class Receipt {
     public LocalDateTime dateAndTime;
     /** List of all items in a sale */
     public ArrayList<ItemInfo> itemList;
+    /** VAT for the Sale */
+    public int VAT;
     
-    public Receipt(LocalDateTime dateAndTime, int preDiscountPrice, int postDiscountPrice, int amountPaid, int change, ArrayList<ItemInfo> itemList){
+    public Receipt(LocalDateTime dateAndTime, int preDiscountPrice, int postDiscountPrice, int amountPaid, int change, ArrayList<ItemInfo> itemList, int VAT){
         this.dateAndTime = dateAndTime;
         this.preDiscountPrice = preDiscountPrice;
         this.postDiscountPrice = postDiscountPrice;
         this.amountPaid = amountPaid;
         this.change = change;
         this.itemList = itemList;
+        this.VAT = VAT;
     }
 }
