@@ -2,7 +2,6 @@ package se.kth.iv1350.saleprocess.integrations;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 
 import se.kth.iv1350.saleprocess.dto.ItemInfo;
 
