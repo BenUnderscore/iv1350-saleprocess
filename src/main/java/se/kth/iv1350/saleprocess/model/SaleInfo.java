@@ -62,4 +62,8 @@ public class SaleInfo {
         int discount = discountRegistryHandler.getDiscount(customerID, preDiscountPrice, itemList);
         postDiscountPrice = preDiscountPrice - discount;
     } 
+
+    public void applyDiscountDummy(int discount){
+        postDiscountPrice = preDiscountPrice - discount;
+    }
 }

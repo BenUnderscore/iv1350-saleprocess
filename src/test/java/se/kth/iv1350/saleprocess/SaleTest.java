@@ -65,7 +65,7 @@ public class SaleTest {
                 assertEquals(item2.description, itemInfo.description);
                 assertEquals(item2.name, itemInfo.name);
                 assertEquals(item2.price, itemInfo.price);
-                assertEquals(1, itemInfo.quantity);
+                assertEquals( 1, itemInfo.quantity);
             }
         }
     }
