@@ -1,7 +1,4 @@
 package se.kth.iv1350.saleprocess.controller;
-
-import java.util.ArrayList;
-
 import se.kth.iv1350.saleprocess.dto.ItemInfo;
 import se.kth.iv1350.saleprocess.dto.Receipt;
 import se.kth.iv1350.saleprocess.dto.RunningStatus;
