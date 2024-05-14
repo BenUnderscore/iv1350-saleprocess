@@ -10,8 +10,8 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-import se.kth.iv1350.saleprocess.dto.ItemInfo;
-import se.kth.iv1350.saleprocess.dto.Receipt;
+import se.kth.iv1350.saleprocess.dto.ItemInfoDTO;
+import se.kth.iv1350.saleprocess.dto.ReceiptDTO;
 import se.kth.iv1350.saleprocess.integrations.PrinterHandler;
 
 
@@ -25,8 +25,8 @@ public class PrinterHandlerTest {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         
-        ArrayList<ItemInfo> items = new ArrayList<ItemInfo>();
-        items.add(new ItemInfo(
+        ArrayList<ItemInfoDTO> items = new ArrayList<ItemInfoDTO>();
+        items.add(new ItemInfoDTO(
             "BigWheel Oatmeal",
             "BigWheel Oatmeal 500g, whole grain oats, high fiber, gluten free",
             "abc123",
@@ -35,7 +35,7 @@ public class PrinterHandlerTest {
             4
         ));
 
-        items.add(new ItemInfo(
+        items.add(new ItemInfoDTO(
             "Nyckelmix 120g",
             "drink mix, unlocks senses",
             "jkl012",
@@ -44,7 +44,7 @@ public class PrinterHandlerTest {
             420
         ));
 
-        Receipt receipt = new Receipt(
+        ReceiptDTO receipt = new ReceiptDTO(
             LocalDateTime.of(2024, Month.APRIL, 30, 15, 29, 44),
             2699960,
             2699960,

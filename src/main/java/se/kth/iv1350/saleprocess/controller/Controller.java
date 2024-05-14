@@ -1,7 +1,7 @@
 package se.kth.iv1350.saleprocess.controller;
-import se.kth.iv1350.saleprocess.dto.ItemInfo;
-import se.kth.iv1350.saleprocess.dto.Receipt;
-import se.kth.iv1350.saleprocess.dto.RunningStatus;
+import se.kth.iv1350.saleprocess.dto.ItemInfoDTO;
+import se.kth.iv1350.saleprocess.dto.ReceiptDTO;
+import se.kth.iv1350.saleprocess.dto.RunningStatusDTO;
 import se.kth.iv1350.saleprocess.integrations.AccountingSystemHandler;
 import se.kth.iv1350.saleprocess.integrations.DiscountRegistryHandler;
 import se.kth.iv1350.saleprocess.integrations.InventorySystemHandler;
@@ -42,15 +42,15 @@ public class Controller {
      * @param quantity Amount of the same item
      * @return Running sale total price, item's price and item's description
      */
-    public RunningStatus registerItems(String itemID, int quantity){
-        ItemInfo newItem = inventorySystemHandler.getItem(itemID);
+    public RunningStatusDTO registerItems(String itemID, int quantity){
+        ItemInfoDTO newItem = inventorySystemHandler.getItem(itemID);
 
         /* If item ID is not found, throw exception */
 
         sale.addItems(newItem, quantity);
         int runningtotal = sale.calculateTotal();
 
-        RunningStatus status = new RunningStatus(runningtotal, newItem.price, newItem.description);
+        RunningStatusDTO status = new RunningStatusDTO(runningtotal, newItem.getPrice(), newItem.getDescription());
 
         return status;
     }
@@ -83,12 +83,12 @@ public class Controller {
      * @return Amount of change to be returned to the customer
      */
     public int registerPayment(int amountPaid){
-        Receipt receipt = saleInfo.createReceipt(amountPaid);
+        ReceiptDTO receipt = saleInfo.createReceipt(amountPaid);
         printerHandler.printReceipt(receipt);
         accountingSystemHandler.logSale(receipt);
-        inventorySystemHandler.updateInventory(receipt.itemList);
+        inventorySystemHandler.updateInventory(receipt.getItemList());
 
-        return receipt.change;
+        return receipt.getChange();
     }
 
 

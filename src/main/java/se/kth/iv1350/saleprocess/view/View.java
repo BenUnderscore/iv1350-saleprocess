@@ -1,7 +1,7 @@
 package se.kth.iv1350.saleprocess.view;
 
 import se.kth.iv1350.saleprocess.controller.Controller;
-import se.kth.iv1350.saleprocess.dto.RunningStatus;
+import se.kth.iv1350.saleprocess.dto.RunningStatusDTO;
 
 public class View {
     private Controller controller;
@@ -28,11 +28,11 @@ public class View {
      * @param itemID Item's identification
      */
     public void scanOneItem(String itemID){
-        RunningStatus status = controller.registerItems(itemID, 1);
-        System.out.println("Running total: " + formatPrice(status.runningTotal));
+        RunningStatusDTO status = controller.registerItems(itemID, 1);
+        System.out.println("Running total: " + formatPrice(status.getRunningTotal()));
         System.out.println("You added new item to sale!");
-        System.out.println(status.itemDescription);
-        System.out.println("It costs: " + formatPrice(status.itemPrice));
+        System.out.println(status.getItemDescription());
+        System.out.println("It costs: " + formatPrice(status.getItemPrice()));
         System.out.println("-----------------------------------------");
     }
 

@@ -3,13 +3,13 @@ package se.kth.iv1350.saleprocess.integrations;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import se.kth.iv1350.saleprocess.dto.ItemInfo;
+import se.kth.iv1350.saleprocess.dto.ItemInfoDTO;
 
 public class InventorySystemHandler {
-    private HashMap<String, ItemInfo> database;
+    private HashMap<String, ItemInfoDTO> database;
 
     private void addItem(String name, String id, int price, String description, int vat) {
-        database.put(id, new ItemInfo(name, description, id, price, vat, 0));
+        database.put(id, new ItemInfoDTO(name, description, id, price, vat, 0));
     }
 
     private void addExampleData() {
@@ -47,7 +47,7 @@ public class InventorySystemHandler {
     }
     
     public InventorySystemHandler() {
-        database = new HashMap<String, ItemInfo>();
+        database = new HashMap<String, ItemInfoDTO>();
         addExampleData();
     }
 
@@ -56,7 +56,7 @@ public class InventorySystemHandler {
      * @param id Item's identification
      * @return An ItemInfo object
      */
-    public ItemInfo getItem(String id) {
+    public ItemInfoDTO getItem(String id) {
         return database.getOrDefault(id, null);
     }
 
@@ -64,7 +64,7 @@ public class InventorySystemHandler {
      * Makes an update call to an external inventory system
      * @param itemList Full item list in a sale
      */
-    public void updateInventory(ArrayList<ItemInfo> itemList) {
+    public void updateInventory(ArrayList<ItemInfoDTO> itemList) {
         System.out.println("Inventory updated.");
     }
 }

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-import se.kth.iv1350.saleprocess.dto.ItemInfo;
+import se.kth.iv1350.saleprocess.dto.ItemInfoDTO;
 import se.kth.iv1350.saleprocess.integrations.InventorySystemHandler;
 
 public class InventorySystemHandlerTest {
@@ -16,10 +16,10 @@ public class InventorySystemHandlerTest {
     public void test() {
         InventorySystemHandler handler = new InventorySystemHandler();
 
-        ItemInfo item1 = handler.getItem("abc123");
-        assertEquals(0, item1.quantity);
+        ItemInfoDTO item1 = handler.getItem("abc123");
+        assertEquals(0, item1.getQuantity());
 
-        ArrayList<ItemInfo> items = new ArrayList<ItemInfo>();
+        ArrayList<ItemInfoDTO> items = new ArrayList<ItemInfoDTO>();
         items.add(item1);
 
         handler.updateInventory(items);

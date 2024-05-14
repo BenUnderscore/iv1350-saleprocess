@@ -9,8 +9,8 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-import se.kth.iv1350.saleprocess.dto.ItemInfo;
-import se.kth.iv1350.saleprocess.dto.Receipt;
+import se.kth.iv1350.saleprocess.dto.ItemInfoDTO;
+import se.kth.iv1350.saleprocess.dto.ReceiptDTO;
 import se.kth.iv1350.saleprocess.model.SaleInfo;
 
 public class SaleInfoTest {
@@ -21,17 +21,17 @@ public class SaleInfoTest {
     @Test
     public void createReceiptTest(){
 
-        ArrayList<ItemInfo> itemList = new ArrayList<ItemInfo>();
-        itemList.add(new ItemInfo("VeryCoolPatch", "A patch that is very cool", "69nice", 6990, 5, 1));
-        itemList.add(new ItemInfo("The Key", "Refreshing mocktail", "666key", 3050, 12, 10));
-        itemList.add(new ItemInfo("Dragon Breath", "Hot lingering dragon breath", "420oof", 42060, 20, 1));
-        itemList.add(new ItemInfo("Spaceship Engine", "Very powerful, makes amazing spaceship noises", "w0o0sh", 102500, 25, 1));
+        ArrayList<ItemInfoDTO> itemList = new ArrayList<ItemInfoDTO>();
+        itemList.add(new ItemInfoDTO("VeryCoolPatch", "A patch that is very cool", "69nice", 6990, 5, 1));
+        itemList.add(new ItemInfoDTO("The Key", "Refreshing mocktail", "666key", 3050, 12, 10));
+        itemList.add(new ItemInfoDTO("Dragon Breath", "Hot lingering dragon breath", "420oof", 42060, 20, 1));
+        itemList.add(new ItemInfoDTO("Spaceship Engine", "Very powerful, makes amazing spaceship noises", "w0o0sh", 102500, 25, 1));
 
         int discount = 666;
         int total = 69 + 30 * 10 + 420 + 1025;
         int vat = 0;
-        for(ItemInfo item : itemList) {
-            vat += (item.price * item.quantity) * item.vat / 100;
+        for(ItemInfoDTO item : itemList) {
+            vat += (item.getPrice() * item.getQuantity()) * item.getVat() / 100;
         }
 
         int paid = 5000;
@@ -43,17 +43,17 @@ public class SaleInfoTest {
         
         saleInfo.applyDiscountDummy(discount);
         
-        Receipt receipt = saleInfo.createReceipt(paid);
+        ReceiptDTO receipt = saleInfo.createReceipt(paid);
 
-        long diffTime = currentDate.until(receipt.dateAndTime, ChronoUnit.SECONDS);
+        long diffTime = currentDate.until(receipt.getDateAndTime(), ChronoUnit.SECONDS);
         
-        assertEquals(receipt.change, change);
-        assertEquals(receipt.VAT, vat);
-        assertEquals(receipt.preDiscountPrice, total);
-        assertEquals(receipt.postDiscountPrice, postDiscountPrice);
-        assertEquals(receipt.amountPaid, paid);
+        assertEquals(receipt.getChange(), change);
+        assertEquals(receipt.getVAT(), vat);
+        assertEquals(receipt.getPreDiscountPrice(), total);
+        assertEquals(receipt.getPostDiscountPrice(), postDiscountPrice);
+        assertEquals(receipt.getAmountPaid(), paid);
         assertTrue(diffTime < 2);
-        assertEquals(receipt.itemList, itemList);
+        assertEquals(receipt.getItemList(), itemList);
 
     }
 }

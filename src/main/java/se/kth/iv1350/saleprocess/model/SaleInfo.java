@@ -5,21 +5,21 @@ import java.util.List;
 import java.time.LocalDateTime;
 
 import se.kth.iv1350.saleprocess.integrations.DiscountRegistryHandler;
-import se.kth.iv1350.saleprocess.dto.ItemInfo;
-import se.kth.iv1350.saleprocess.dto.Receipt;
+import se.kth.iv1350.saleprocess.dto.ItemInfoDTO;
+import se.kth.iv1350.saleprocess.dto.ReceiptDTO;
 
 public class SaleInfo {
-    private ArrayList<ItemInfo> itemList;
+    private ArrayList<ItemInfoDTO> itemList;
     private int preDiscountPrice;
     private int postDiscountPrice;
 
-    public SaleInfo(ArrayList<ItemInfo> itemList, int totalPrice ){
+    public SaleInfo(ArrayList<ItemInfoDTO> itemList, int totalPrice ){
         this.itemList = itemList;
         this.preDiscountPrice = totalPrice;
         this.postDiscountPrice = totalPrice;
     }
 
-    public ArrayList<ItemInfo> getItemList(){
+    public ArrayList<ItemInfoDTO> getItemList(){
         return itemList;
     }
 
@@ -36,18 +36,18 @@ public class SaleInfo {
      * @param amountPaid How much customer paid
      * @return Receipt object with sale information
      */
-    public Receipt createReceipt(int amountPaid){
+    public ReceiptDTO createReceipt(int amountPaid){
         LocalDateTime currentDate = LocalDateTime.now();
         int change = amountPaid - postDiscountPrice;
         int VAT = calculateTotalVat(itemList);
-        Receipt receipt = new Receipt(currentDate, preDiscountPrice, postDiscountPrice, amountPaid, change, itemList, VAT);
+        ReceiptDTO receipt = new ReceiptDTO(currentDate, preDiscountPrice, postDiscountPrice, amountPaid, change, itemList, VAT);
         return receipt;
     }
 
-    private int calculateTotalVat(List<ItemInfo> items) {
+    private int calculateTotalVat(List<ItemInfoDTO> items) {
         int total = 0;
-        for(ItemInfo item : items) {
-            total += (item.price * item.quantity) * item.vat / 100;
+        for(ItemInfoDTO item : items) {
+            total += (item.getPrice() * item.getQuantity()) * item.getVat() / 100;
         }
 
         return total;

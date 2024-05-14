@@ -6,14 +6,14 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-import se.kth.iv1350.saleprocess.dto.ItemInfo;
+import se.kth.iv1350.saleprocess.dto.ItemInfoDTO;
 import se.kth.iv1350.saleprocess.model.Sale;
 import se.kth.iv1350.saleprocess.model.SaleInfo;
 
 public class SaleTest {
     public SaleTest() {}
 
-    private final ItemInfo item1 = new ItemInfo(
+    private final ItemInfoDTO item1 = new ItemInfoDTO(
         "Item 1",
         "The first item to test",
         "1",
@@ -22,7 +22,7 @@ public class SaleTest {
         1
     );
 
-    private final ItemInfo item2 = new ItemInfo(
+    private final ItemInfoDTO item2 = new ItemInfoDTO(
         "Item 2",
         "The second item to test",
         "2",
@@ -54,18 +54,18 @@ public class SaleTest {
         assertEquals(920, saleInfo.getPostDiscountPrice());
         assertEquals(2, saleInfo.getItemList().size());
 
-        ArrayList<ItemInfo> itemList = saleInfo.getItemList();
-        for (ItemInfo itemInfo : itemList) {
-            if(itemInfo.id == item1.id) {
-                assertEquals(item1.description, itemInfo.description);
-                assertEquals(item1.name, itemInfo.name);
-                assertEquals(item1.price, itemInfo.price);
-                assertEquals(6, itemInfo.quantity);
-            } else if(itemInfo.id == item2.id) {
-                assertEquals(item2.description, itemInfo.description);
-                assertEquals(item2.name, itemInfo.name);
-                assertEquals(item2.price, itemInfo.price);
-                assertEquals( 1, itemInfo.quantity);
+        ArrayList<ItemInfoDTO> itemList = saleInfo.getItemList();
+        for (ItemInfoDTO itemInfo : itemList) {
+            if(itemInfo.getId() == item1.getId()) {
+                assertEquals(item1.getDescription(), itemInfo.getDescription());
+                assertEquals(item1.getName(), itemInfo.getName());
+                assertEquals(item1.getPrice(), itemInfo.getPrice());
+                assertEquals(6, itemInfo.getQuantity());
+            } else if(itemInfo.getId() == item2.getId()) {
+                assertEquals(item2.getDescription(), itemInfo.getDescription());
+                assertEquals(item2.getName(), itemInfo.getName());
+                assertEquals(item2.getPrice(), itemInfo.getPrice());
+                assertEquals( 1, itemInfo.getQuantity());
             }
         }
     }
