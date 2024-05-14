@@ -35,7 +35,7 @@ public class ReceiptDTO {
     /** @return Date and time of payment */
     public LocalDateTime getDateAndTime() { return this.dateAndTime; }
     /** @return List of all items in a sale */
-    public ArrayList<ItemInfoDTO> getItemList() { return this.itemList; }
+    public ArrayList<ItemInfoDTO> getItemList() { return new ArrayList<ItemInfoDTO>(this.itemList); }
     /** @return VAT for the Sale */
     public int getVAT() { return this.VAT; }
 }

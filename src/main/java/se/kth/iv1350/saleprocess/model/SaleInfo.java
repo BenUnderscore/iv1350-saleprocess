@@ -40,7 +40,7 @@ public class SaleInfo {
         LocalDateTime currentDate = LocalDateTime.now();
         int change = amountPaid - postDiscountPrice;
         int VAT = calculateTotalVat(itemList);
-        ReceiptDTO receipt = new ReceiptDTO(currentDate, preDiscountPrice, postDiscountPrice, amountPaid, change, itemList, VAT);
+        ReceiptDTO receipt = new ReceiptDTO(currentDate, preDiscountPrice, postDiscountPrice, amountPaid, change, new ArrayList<ItemInfoDTO>(itemList), VAT);
         return receipt;
     }
 
