@@ -6,7 +6,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.time.LocalDateTime;
 import java.time.Month;
-import java.util.ArrayList;
 
 import org.junit.Test;
 
@@ -25,24 +24,24 @@ public class PrinterHandlerTest {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         
-        ArrayList<ItemInfoDTO> items = new ArrayList<ItemInfoDTO>();
-        items.add(new ItemInfoDTO(
-            "BigWheel Oatmeal",
-            "BigWheel Oatmeal 500g, whole grain oats, high fiber, gluten free",
-            "abc123",
-            2990,
-            6,
-            4
-        ));
-
-        items.add(new ItemInfoDTO(
-            "Nyckelmix 120g",
-            "drink mix, unlocks senses",
-            "jkl012",
-            6900,
-            12,
-            420
-        ));
+        ItemInfoDTO[] items = new ItemInfoDTO[] {
+            new ItemInfoDTO(
+                "BigWheel Oatmeal",
+                "BigWheel Oatmeal 500g, whole grain oats, high fiber, gluten free",
+                "abc123",
+                2990,
+                6,
+                4
+            ),
+            new ItemInfoDTO(
+                "Nyckelmix 120g",
+                "drink mix, unlocks senses",
+                "jkl012",
+                6900,
+                12,
+                420
+            )
+        };
 
         ReceiptDTO receipt = new ReceiptDTO(
             LocalDateTime.of(2024, Month.APRIL, 30, 15, 29, 44),

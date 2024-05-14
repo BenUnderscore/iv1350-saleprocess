@@ -1,6 +1,5 @@
 package se.kth.iv1350.saleprocess.dto;
 
-import java.util.ArrayList;
 import java.time.LocalDateTime;
 
 public class ReceiptDTO {
@@ -10,11 +9,11 @@ public class ReceiptDTO {
     private int amountPaid;
     private int change;
     private LocalDateTime dateAndTime;
-    private ArrayList<ItemInfoDTO> itemList;
+    private ItemInfoDTO[] itemList;
     private int VAT;
 
     
-    public ReceiptDTO(LocalDateTime dateAndTime, int preDiscountPrice, int postDiscountPrice, int amountPaid, int change, ArrayList<ItemInfoDTO> itemList, int VAT){
+    public ReceiptDTO(LocalDateTime dateAndTime, int preDiscountPrice, int postDiscountPrice, int amountPaid, int change, ItemInfoDTO[] itemList, int VAT){
         this.dateAndTime = dateAndTime;
         this.preDiscountPrice = preDiscountPrice;
         this.postDiscountPrice = postDiscountPrice;
@@ -35,7 +34,7 @@ public class ReceiptDTO {
     /** @return Date and time of payment */
     public LocalDateTime getDateAndTime() { return this.dateAndTime; }
     /** @return List of all items in a sale */
-    public ArrayList<ItemInfoDTO> getItemList() { return new ArrayList<ItemInfoDTO>(this.itemList); }
+    public ItemInfoDTO[] getItemList() { return this.itemList; }
     /** @return VAT for the Sale */
     public int getVAT() { return this.VAT; }
 }

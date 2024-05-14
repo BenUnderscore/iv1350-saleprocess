@@ -61,7 +61,9 @@ public class Sale {
     public SaleInfo finalizeSaleInfo(){
         int total = this.calculateTotal();
         
-        SaleInfo saleInfo = new SaleInfo(new ArrayList<ItemInfoDTO>(itemList), total);
+        ItemInfoDTO[] itemArray = new ItemInfoDTO[itemList.size()];
+        itemArray = itemList.toArray(itemArray);
+        SaleInfo saleInfo = new SaleInfo(itemArray, total);
 
         return saleInfo;
     }

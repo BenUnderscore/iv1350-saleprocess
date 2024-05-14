@@ -2,7 +2,6 @@ package se.kth.iv1350.saleprocess;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.ArrayList;
 
 import org.junit.Test;
 
@@ -38,7 +37,7 @@ public class SaleTest {
 
         assertEquals(0, saleInfo.getPreDiscountPrice());
         assertEquals(0, saleInfo.getPostDiscountPrice());
-        assertEquals(0, saleInfo.getItemList().size());
+        assertEquals(0, saleInfo.getItemList().length);
     }
 
     @Test
@@ -52,9 +51,9 @@ public class SaleTest {
         SaleInfo saleInfo = sale.finalizeSaleInfo();
         assertEquals(920, saleInfo.getPreDiscountPrice());
         assertEquals(920, saleInfo.getPostDiscountPrice());
-        assertEquals(2, saleInfo.getItemList().size());
+        assertEquals(2, saleInfo.getItemList().length);
 
-        ArrayList<ItemInfoDTO> itemList = saleInfo.getItemList();
+        ItemInfoDTO[] itemList = saleInfo.getItemList();
         for (ItemInfoDTO itemInfo : itemList) {
             if(itemInfo.getId() == item1.getId()) {
                 assertEquals(item1.getDescription(), itemInfo.getDescription());

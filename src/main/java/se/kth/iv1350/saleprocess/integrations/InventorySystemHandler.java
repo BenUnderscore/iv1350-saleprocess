@@ -1,6 +1,5 @@
 package se.kth.iv1350.saleprocess.integrations;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import se.kth.iv1350.saleprocess.dto.ItemInfoDTO;
@@ -64,7 +63,7 @@ public class InventorySystemHandler {
      * Makes an update call to an external inventory system
      * @param itemList Full item list in a sale
      */
-    public void updateInventory(ArrayList<ItemInfoDTO> itemList) {
+    public void updateInventory(ItemInfoDTO[] itemList) {
         System.out.println("Inventory updated.");
     }
 }

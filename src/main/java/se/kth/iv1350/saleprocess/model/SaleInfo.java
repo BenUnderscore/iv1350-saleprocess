@@ -1,7 +1,5 @@
 package se.kth.iv1350.saleprocess.model;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.time.LocalDateTime;
 
 import se.kth.iv1350.saleprocess.integrations.DiscountRegistryHandler;
@@ -9,17 +7,17 @@ import se.kth.iv1350.saleprocess.dto.ItemInfoDTO;
 import se.kth.iv1350.saleprocess.dto.ReceiptDTO;
 
 public class SaleInfo {
-    private ArrayList<ItemInfoDTO> itemList;
+    private ItemInfoDTO[] itemList;
     private int preDiscountPrice;
     private int postDiscountPrice;
 
-    public SaleInfo(ArrayList<ItemInfoDTO> itemList, int totalPrice ){
+    public SaleInfo(ItemInfoDTO[] itemList, int totalPrice ){
         this.itemList = itemList;
         this.preDiscountPrice = totalPrice;
         this.postDiscountPrice = totalPrice;
     }
 
-    public ArrayList<ItemInfoDTO> getItemList(){
+    public ItemInfoDTO[] getItemList(){
         return itemList;
     }
 
@@ -40,11 +38,11 @@ public class SaleInfo {
         LocalDateTime currentDate = LocalDateTime.now();
         int change = amountPaid - postDiscountPrice;
         int VAT = calculateTotalVat(itemList);
-        ReceiptDTO receipt = new ReceiptDTO(currentDate, preDiscountPrice, postDiscountPrice, amountPaid, change, new ArrayList<ItemInfoDTO>(itemList), VAT);
+        ReceiptDTO receipt = new ReceiptDTO(currentDate, preDiscountPrice, postDiscountPrice, amountPaid, change, itemList, VAT);
         return receipt;
     }
 
-    private int calculateTotalVat(List<ItemInfoDTO> items) {
+    private int calculateTotalVat(ItemInfoDTO[] items) {
         int total = 0;
         for(ItemInfoDTO item : items) {
             total += (item.getPrice() * item.getQuantity()) * item.getVat() / 100;

@@ -2,7 +2,6 @@ package se.kth.iv1350.saleprocess;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.ArrayList;
 
 import org.junit.Test;
 
@@ -19,8 +18,7 @@ public class InventorySystemHandlerTest {
         ItemInfoDTO item1 = handler.getItem("abc123");
         assertEquals(0, item1.getQuantity());
 
-        ArrayList<ItemInfoDTO> items = new ArrayList<ItemInfoDTO>();
-        items.add(item1);
+        ItemInfoDTO[] items = new ItemInfoDTO[] { item1 };
 
         handler.updateInventory(items);
     }
