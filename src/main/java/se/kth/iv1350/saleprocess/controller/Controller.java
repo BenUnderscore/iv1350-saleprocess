@@ -6,6 +6,7 @@ import se.kth.iv1350.saleprocess.integrations.AccountingSystemHandler;
 import se.kth.iv1350.saleprocess.integrations.DiscountRegistryHandler;
 import se.kth.iv1350.saleprocess.integrations.InventorySystemHandler;
 import se.kth.iv1350.saleprocess.integrations.PrinterHandler;
+import se.kth.iv1350.saleprocess.exceptions.InvalidItemIdentifierException;
 import se.kth.iv1350.saleprocess.model.Sale;
 import se.kth.iv1350.saleprocess.model.SaleInfo;
 
@@ -41,11 +42,10 @@ public class Controller {
      * @param itemID Item Identification
      * @param quantity Amount of the same item
      * @return Running sale total price, item's price and item's description
+     * @throws InvalidItemIdentifierException 
      */
-    public RunningStatusDTO registerItems(String itemID, int quantity){
+    public RunningStatusDTO registerItems(String itemID, int quantity) throws InvalidItemIdentifierException {
         ItemInfoDTO newItem = inventorySystemHandler.getItem(itemID);
-
-        /* If item ID is not found, throw exception */
 
         sale.addItems(newItem, quantity);
         int runningtotal = sale.calculateTotal();

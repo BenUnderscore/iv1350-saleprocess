@@ -3,6 +3,7 @@ package se.kth.iv1350.saleprocess.integrations;
 import java.util.HashMap;
 
 import se.kth.iv1350.saleprocess.dto.ItemInfoDTO;
+import se.kth.iv1350.saleprocess.exceptions.InvalidItemIdentifierException;
 
 public class InventorySystemHandler {
     private HashMap<String, ItemInfoDTO> database;
@@ -54,9 +55,14 @@ public class InventorySystemHandler {
      * Fetches an item from an external inventory system
      * @param id Item's identification
      * @return An ItemInfo object
+     * @throws InvalidItemIdentifierException
      */
-    public ItemInfoDTO getItem(String id) {
-        return database.getOrDefault(id, null);
+    public ItemInfoDTO getItem(String id) throws InvalidItemIdentifierException{
+        ItemInfoDTO fetchedItem = database.getOrDefault(id, null);
+        if(fetchedItem == null){
+            throw new InvalidItemIdentifierException(id);
+        }
+        return fetchedItem;
     }
 
     /**

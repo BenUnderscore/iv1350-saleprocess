@@ -2,6 +2,7 @@ package se.kth.iv1350.saleprocess.view;
 
 import se.kth.iv1350.saleprocess.controller.Controller;
 import se.kth.iv1350.saleprocess.dto.RunningStatusDTO;
+import se.kth.iv1350.saleprocess.exceptions.InvalidItemIdentifierException;
 
 public class View {
     private Controller controller;
@@ -27,13 +28,20 @@ public class View {
      * Scans one item and registers it with quantity 1
      * @param itemID Item's identification
      */
-    public void scanOneItem(String itemID){
-        RunningStatusDTO status = controller.registerItems(itemID, 1);
-        System.out.println("Running total: " + formatPrice(status.getRunningTotal()));
-        System.out.println("You added new item to sale!");
-        System.out.println(status.getItemDescription());
-        System.out.println("It costs: " + formatPrice(status.getItemPrice()));
-        System.out.println("-----------------------------------------");
+    public void scanOneItem(String itemID) {
+        try {
+            RunningStatusDTO status = controller.registerItems(itemID, 1);
+            System.out.println("Running total: " + formatPrice(status.getRunningTotal()));
+            System.out.println("You added new item to sale!");
+            System.out.println(status.getItemDescription());
+            System.out.println("It costs: " + formatPrice(status.getItemPrice()));
+            System.out.println("-----------------------------------------");
+        } catch(InvalidItemIdentifierException e) {
+            // For users
+            System.out.println("Error: " + e.getMessage());
+            // For developers
+            e.printStackTrace();
+        }
     }
 
     /**

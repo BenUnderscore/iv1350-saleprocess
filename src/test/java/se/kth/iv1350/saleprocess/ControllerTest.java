@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import se.kth.iv1350.saleprocess.controller.Controller;
 import se.kth.iv1350.saleprocess.dto.RunningStatusDTO;
+import se.kth.iv1350.saleprocess.exceptions.InvalidItemIdentifierException;
 import se.kth.iv1350.saleprocess.integrations.AccountingSystemHandler;
 import se.kth.iv1350.saleprocess.integrations.DiscountRegistryHandler;
 import se.kth.iv1350.saleprocess.integrations.InventorySystemHandler;
@@ -15,7 +16,7 @@ public class ControllerTest {
     public ControllerTest() {}
 
     @Test
-    public void test() {
+    public void test() throws InvalidItemIdentifierException{
         AccountingSystemHandler accountingSystemHandler = new AccountingSystemHandler();
         DiscountRegistryHandler discountRegistryHandler = new DiscountRegistryHandler();
         InventorySystemHandler inventorySystemHandler = new InventorySystemHandler();
@@ -39,5 +40,25 @@ public class ControllerTest {
 
         assertEquals(10880, controller.endSale());
         assertEquals(1120, controller.registerPayment(12000));
+    }
+
+    @Test
+    public void invalidIdentifier() throws InvalidItemIdentifierException {
+        AccountingSystemHandler accountingSystemHandler = new AccountingSystemHandler();
+        DiscountRegistryHandler discountRegistryHandler = new DiscountRegistryHandler();
+        InventorySystemHandler inventorySystemHandler = new InventorySystemHandler();
+        PrinterHandler printerHandler = new PrinterHandler();
+        Controller controller = new Controller(accountingSystemHandler, discountRegistryHandler, inventorySystemHandler, printerHandler);
+        controller.startSale();
+
+        boolean threwException = false;
+        try {
+            controller.registerItems("thisdoesnotexist", 1);
+        }
+        catch(InvalidItemIdentifierException e) {
+            threwException = true;
+        }
+
+        assertEquals(threwException, true);
     }
 }
