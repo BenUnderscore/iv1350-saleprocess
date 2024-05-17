@@ -1,4 +1,4 @@
-package se.kth.iv1350.saleprocess;
+package se.kth.iv1350.saleprocess.integrations;
 
 import static org.junit.Assert.assertEquals;
 
@@ -11,7 +11,6 @@ import org.junit.Test;
 
 import se.kth.iv1350.saleprocess.dto.ItemInfoDTO;
 import se.kth.iv1350.saleprocess.dto.ReceiptDTO;
-import se.kth.iv1350.saleprocess.integrations.PrinterHandler;
 
 
 public class PrinterHandlerTest {

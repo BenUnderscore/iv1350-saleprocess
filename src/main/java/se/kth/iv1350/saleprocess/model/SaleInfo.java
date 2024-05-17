@@ -2,7 +2,7 @@ package se.kth.iv1350.saleprocess.model;
 
 import java.time.LocalDateTime;
 
-import se.kth.iv1350.saleprocess.integrations.DiscountRegistryHandler;
+import se.kth.iv1350.saleprocess.integrations.discounts.DiscountRegistryHandler;
 import se.kth.iv1350.saleprocess.dto.ItemInfoDTO;
 import se.kth.iv1350.saleprocess.dto.ReceiptDTO;
 

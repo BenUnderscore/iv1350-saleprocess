@@ -1,6 +1,4 @@
-package se.kth.iv1350.saleprocess;
-
-import se.kth.iv1350.saleprocess.controller.Observer;
+package se.kth.iv1350.saleprocess.controller;
 
 public class FakeObserver implements Observer {
     private Integer lastObservedTotalRevenue;

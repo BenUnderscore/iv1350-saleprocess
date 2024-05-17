@@ -1,16 +1,15 @@
-package se.kth.iv1350.saleprocess;
+package se.kth.iv1350.saleprocess.controller;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
 
-import se.kth.iv1350.saleprocess.controller.Controller;
 import se.kth.iv1350.saleprocess.dto.RunningStatusDTO;
 import se.kth.iv1350.saleprocess.exceptions.DatabaseConnectionException;
 import se.kth.iv1350.saleprocess.exceptions.InvalidItemIdentifierException;
 import se.kth.iv1350.saleprocess.integrations.AccountingSystemHandler;
-import se.kth.iv1350.saleprocess.integrations.DiscountRegistryHandler;
+import se.kth.iv1350.saleprocess.integrations.discounts.DiscountRegistryHandler;
 import se.kth.iv1350.saleprocess.integrations.InventorySystemHandler;
 import se.kth.iv1350.saleprocess.integrations.PrinterHandler;
 import se.kth.iv1350.saleprocess.loggers.ExceptionLogger;

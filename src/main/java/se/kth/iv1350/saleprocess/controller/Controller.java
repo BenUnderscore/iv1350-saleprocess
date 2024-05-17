@@ -5,7 +5,7 @@ import se.kth.iv1350.saleprocess.dto.ItemInfoDTO;
 import se.kth.iv1350.saleprocess.dto.ReceiptDTO;
 import se.kth.iv1350.saleprocess.dto.RunningStatusDTO;
 import se.kth.iv1350.saleprocess.integrations.AccountingSystemHandler;
-import se.kth.iv1350.saleprocess.integrations.DiscountRegistryHandler;
+import se.kth.iv1350.saleprocess.integrations.discounts.DiscountRegistryHandler;
 import se.kth.iv1350.saleprocess.integrations.InventorySystemHandler;
 import se.kth.iv1350.saleprocess.integrations.PrinterHandler;
 import se.kth.iv1350.saleprocess.exceptions.InvalidItemIdentifierException;

@@ -1,7 +1,7 @@
 package se.kth.iv1350.saleprocess.startup;
 
 import se.kth.iv1350.saleprocess.integrations.AccountingSystemHandler;
-import se.kth.iv1350.saleprocess.integrations.DiscountRegistryHandler;
+import se.kth.iv1350.saleprocess.integrations.discounts.DiscountRegistryHandler;
 import se.kth.iv1350.saleprocess.integrations.InventorySystemHandler;
 import se.kth.iv1350.saleprocess.integrations.PrinterHandler;
 import se.kth.iv1350.saleprocess.controller.Controller;
@@ -16,6 +16,7 @@ public class Program{
         view.scanOneItem("abc123");
         view.scanOneItem("ghi789");
         view.endSale();
+        view.requestDiscount("dante");
         view.registerPayment(12000);
 
         view.startSale();
@@ -28,7 +29,8 @@ public class Program{
         view.scanOneItem("jkl012");
         view.scanOneItem("jkl012");
         view.endSale();
-        view.registerPayment(90000);
+        view.requestDiscount("someone else");
+        view.registerPayment(50000);
     }
 
     /**

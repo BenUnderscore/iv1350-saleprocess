@@ -1,4 +1,4 @@
-package se.kth.iv1350.saleprocess;
+package se.kth.iv1350.saleprocess.integrations;
 
 import static org.junit.Assert.assertEquals;
 
@@ -8,7 +8,6 @@ import org.junit.Test;
 import se.kth.iv1350.saleprocess.dto.ItemInfoDTO;
 import se.kth.iv1350.saleprocess.exceptions.DatabaseConnectionException;
 import se.kth.iv1350.saleprocess.exceptions.InvalidItemIdentifierException;
-import se.kth.iv1350.saleprocess.integrations.InventorySystemHandler;
 
 public class InventorySystemHandlerTest {
     public InventorySystemHandlerTest() {}

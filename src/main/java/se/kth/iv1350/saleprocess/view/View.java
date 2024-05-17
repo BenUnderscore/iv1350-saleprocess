@@ -54,6 +54,12 @@ public class View {
         System.out.println("-----------------------------------------");
     }
 
+    public void requestDiscount(String customerID){
+        int postDiscountTotal = controller.requestDiscount(customerID);
+        System.out.println("Discounts were applied, new price: " + PriceUtilities.formatPrice(postDiscountTotal) + " kr.");
+        System.out.println("-----------------------------------------");
+    }
+
     /**
      * Registers payment, i.e. finilizes the sale 
      * @param amount Amount paid
