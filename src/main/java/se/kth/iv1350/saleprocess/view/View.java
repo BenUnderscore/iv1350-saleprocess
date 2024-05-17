@@ -2,6 +2,7 @@ package se.kth.iv1350.saleprocess.view;
 
 import se.kth.iv1350.saleprocess.controller.Controller;
 import se.kth.iv1350.saleprocess.dto.RunningStatusDTO;
+import se.kth.iv1350.saleprocess.exceptions.ExceptionLogger;
 import se.kth.iv1350.saleprocess.exceptions.InvalidItemIdentifierException;
 
 public class View {
@@ -36,11 +37,11 @@ public class View {
             System.out.println(status.getItemDescription());
             System.out.println("It costs: " + formatPrice(status.getItemPrice()));
             System.out.println("-----------------------------------------");
-        } catch(InvalidItemIdentifierException e) {
+        } catch(Exception e) {
             // For users
             System.out.println("Error: " + e.getMessage());
             // For developers
-            e.printStackTrace();
+            ExceptionLogger.getInstance().logException(e);
         }
     }
 

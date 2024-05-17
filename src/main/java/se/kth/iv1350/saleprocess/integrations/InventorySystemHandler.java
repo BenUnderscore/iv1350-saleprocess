@@ -3,6 +3,7 @@ package se.kth.iv1350.saleprocess.integrations;
 import java.util.HashMap;
 
 import se.kth.iv1350.saleprocess.dto.ItemInfoDTO;
+import se.kth.iv1350.saleprocess.exceptions.DatabaseConnectionException;
 import se.kth.iv1350.saleprocess.exceptions.InvalidItemIdentifierException;
 
 public class InventorySystemHandler {
@@ -57,7 +58,11 @@ public class InventorySystemHandler {
      * @return An ItemInfo object
      * @throws InvalidItemIdentifierException
      */
-    public ItemInfoDTO getItem(String id) throws InvalidItemIdentifierException{
+    public ItemInfoDTO getItem(String id) throws InvalidItemIdentifierException {
+        if(id.equals("database offline")){
+            throw new DatabaseConnectionException("Database cannot be reached");
+        }
+
         ItemInfoDTO fetchedItem = database.getOrDefault(id, null);
         if(fetchedItem == null){
             throw new InvalidItemIdentifierException(id);

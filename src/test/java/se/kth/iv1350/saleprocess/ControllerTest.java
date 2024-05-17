@@ -6,6 +6,8 @@ import org.junit.Test;
 
 import se.kth.iv1350.saleprocess.controller.Controller;
 import se.kth.iv1350.saleprocess.dto.RunningStatusDTO;
+import se.kth.iv1350.saleprocess.exceptions.DatabaseConnectionException;
+import se.kth.iv1350.saleprocess.exceptions.ExceptionLogger;
 import se.kth.iv1350.saleprocess.exceptions.InvalidItemIdentifierException;
 import se.kth.iv1350.saleprocess.integrations.AccountingSystemHandler;
 import se.kth.iv1350.saleprocess.integrations.DiscountRegistryHandler;
@@ -43,7 +45,7 @@ public class ControllerTest {
     }
 
     @Test
-    public void invalidIdentifier() throws InvalidItemIdentifierException {
+    public void invalidIdentifier() {
         AccountingSystemHandler accountingSystemHandler = new AccountingSystemHandler();
         DiscountRegistryHandler discountRegistryHandler = new DiscountRegistryHandler();
         InventorySystemHandler inventorySystemHandler = new InventorySystemHandler();
@@ -56,6 +58,28 @@ public class ControllerTest {
             controller.registerItems("thisdoesnotexist", 1);
         }
         catch(InvalidItemIdentifierException e) {
+            ExceptionLogger.getInstance().logException(e);
+            threwException = true;
+        }
+
+        assertEquals(threwException, true);
+    }
+
+    @Test
+    public void databaseOffline() throws InvalidItemIdentifierException {
+        AccountingSystemHandler accountingSystemHandler = new AccountingSystemHandler();
+        DiscountRegistryHandler discountRegistryHandler = new DiscountRegistryHandler();
+        InventorySystemHandler inventorySystemHandler = new InventorySystemHandler();
+        PrinterHandler printerHandler = new PrinterHandler();
+        Controller controller = new Controller(accountingSystemHandler, discountRegistryHandler, inventorySystemHandler, printerHandler);
+        controller.startSale();
+
+        boolean threwException = false;
+        try {
+            controller.registerItems("database offline", 1);
+        }
+        catch(DatabaseConnectionException e) {
+            ExceptionLogger.getInstance().logException(e);
             threwException = true;
         }
 
