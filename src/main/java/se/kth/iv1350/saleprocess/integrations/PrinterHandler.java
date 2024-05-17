@@ -4,6 +4,7 @@ import java.time.format.DateTimeFormatter;
 
 import se.kth.iv1350.saleprocess.dto.ItemInfoDTO;
 import se.kth.iv1350.saleprocess.dto.ReceiptDTO;
+import se.kth.iv1350.saleprocess.util.PriceUtilities;
 
 public class PrinterHandler {
     public PrinterHandler() {
@@ -14,13 +15,11 @@ public class PrinterHandler {
             int itemTotalPrice = item.getPrice() * item.getQuantity();
             stringBuilder.append(
                 String.format(
-                    "%-23s %3d x %2d.%02d SEK %5d.%02d SEK %n",
+                    "%-23s %3d x %s SEK %s SEK %n",
                     item.getName(),
                     item.getQuantity(),
-                    item.getPrice() / 100,
-                    item.getPrice() % 100,
-                    itemTotalPrice / 100,
-                    itemTotalPrice % 100
+                    PriceUtilities.formatPrice(item.getPrice()),
+                    PriceUtilities.formatPrice(itemTotalPrice)
                 )
             );
         }
@@ -40,39 +39,23 @@ public class PrinterHandler {
 
         appendItems(receipt.getItemList(), stringBuilder);
         stringBuilder.append(
-            String.format(
-                "Total: %38d.%02d SEK%n",
-                receipt.getPostDiscountPrice() / 100,
-                receipt.getPostDiscountPrice() % 100
-            )
+            "Total: " + PriceUtilities.formatPrice(receipt.getPostDiscountPrice()) + " SEK\n"
         );
 
         stringBuilder.append("\n");
 
         stringBuilder.append(
-            String.format(
-                "VAT: %01d.%02d SEK%n",
-                receipt.getVAT() / 100,
-                receipt.getVAT() % 100
-            )
+            "VAT: " + PriceUtilities.formatPrice(receipt.getVAT()) + " SEK\n"
         );
 
         stringBuilder.append("\n");
 
         stringBuilder.append(
-            String.format(
-                "Cash: %01d.%02d SEK%n",
-                receipt.getAmountPaid() / 100,
-                receipt.getAmountPaid() % 100
-            )
+            "Cash: " + PriceUtilities.formatPrice(receipt.getAmountPaid()) + " SEK\n"
         );
 
         stringBuilder.append(
-            String.format(
-                "Change: %01d.%02d SEK%n",
-                receipt.getChange() / 100,
-                receipt.getChange() % 100
-            )
+            "Change: " + PriceUtilities.formatPrice(receipt.getChange()) + " SEK\n"
         );
 
         stringBuilder.append("------------------ End receipt ---------------------\n");

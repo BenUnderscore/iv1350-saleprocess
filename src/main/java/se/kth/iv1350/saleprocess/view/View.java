@@ -2,22 +2,19 @@ package se.kth.iv1350.saleprocess.view;
 
 import se.kth.iv1350.saleprocess.controller.Controller;
 import se.kth.iv1350.saleprocess.dto.RunningStatusDTO;
-import se.kth.iv1350.saleprocess.exceptions.ExceptionLogger;
+import se.kth.iv1350.saleprocess.loggers.ExceptionLogger;
+import se.kth.iv1350.saleprocess.loggers.TotalRevenueFileOutput;
+import se.kth.iv1350.saleprocess.util.PriceUtilities;
 
 public class View {
     private Controller controller;
 
-    private TotalRevenueView totalRevenueView;
-
     public View(Controller controller) {
         this.controller = controller;
-        totalRevenueView = new TotalRevenueView();
-        controller.registerObserver(totalRevenueView);
+        controller.registerObserver(new TotalRevenueView());
+        controller.registerObserver(new TotalRevenueFileOutput());
     }
 
-    private static String formatPrice(int amount) {
-        return String.format("%01d.%02d", amount / 100, amount % 100);
-    }
 
     /**
      * Declares sale's beginning. Sale object is created in this step.
@@ -35,10 +32,10 @@ public class View {
     public void scanOneItem(String itemID) {
         try {
             RunningStatusDTO status = controller.registerItems(itemID, 1);
-            System.out.println("Running total: " + formatPrice(status.getRunningTotal()));
+            System.out.println("Running total: " + PriceUtilities.formatPrice(status.getRunningTotal()));
             System.out.println("You added new item to sale!");
             System.out.println(status.getItemDescription());
-            System.out.println("It costs: " + formatPrice(status.getItemPrice()));
+            System.out.println("It costs: " + PriceUtilities.formatPrice(status.getItemPrice()));
             System.out.println("-----------------------------------------");
         } catch(Exception e) {
             // For users
@@ -53,7 +50,7 @@ public class View {
      */
     public void endSale(){
         int total = controller.endSale();
-        System.out.println("Sale has ended with total price of " + formatPrice(total) + " kr.");
+        System.out.println("Sale has ended with total price of " + PriceUtilities.formatPrice(total) + " kr.");
         System.out.println("-----------------------------------------");
     }
 
@@ -63,7 +60,7 @@ public class View {
      */
     public void registerPayment(int amount){  
         int change = controller.registerPayment(amount);
-        System.out.println("Customer paid " + formatPrice(amount) + " kr, change is " + formatPrice(change) + " kr.");
+        System.out.println("Customer paid " + PriceUtilities.formatPrice(amount) + " kr, change is " + PriceUtilities.formatPrice(change) + " kr.");
         System.out.println("-----------------------------------------");
     }
 

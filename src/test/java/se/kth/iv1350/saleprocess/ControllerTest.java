@@ -8,12 +8,12 @@ import org.junit.Test;
 import se.kth.iv1350.saleprocess.controller.Controller;
 import se.kth.iv1350.saleprocess.dto.RunningStatusDTO;
 import se.kth.iv1350.saleprocess.exceptions.DatabaseConnectionException;
-import se.kth.iv1350.saleprocess.exceptions.ExceptionLogger;
 import se.kth.iv1350.saleprocess.exceptions.InvalidItemIdentifierException;
 import se.kth.iv1350.saleprocess.integrations.AccountingSystemHandler;
 import se.kth.iv1350.saleprocess.integrations.DiscountRegistryHandler;
 import se.kth.iv1350.saleprocess.integrations.InventorySystemHandler;
 import se.kth.iv1350.saleprocess.integrations.PrinterHandler;
+import se.kth.iv1350.saleprocess.loggers.ExceptionLogger;
 
 public class ControllerTest {
     public ControllerTest() {}

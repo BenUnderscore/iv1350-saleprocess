@@ -17,6 +17,18 @@ public class Program{
         view.scanOneItem("ghi789");
         view.endSale();
         view.registerPayment(12000);
+
+        view.startSale();
+        view.scanOneItem("abc123");
+        view.scanOneItem("ghi789");
+        view.scanOneItem("jkl012");
+        view.scanOneItem("jkl012");
+        view.scanOneItem("jkl012");
+        view.scanOneItem("jkl012");
+        view.scanOneItem("jkl012");
+        view.scanOneItem("jkl012");
+        view.endSale();
+        view.registerPayment(90000);
     }
 
     /**

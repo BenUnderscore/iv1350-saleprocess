@@ -1,4 +1,4 @@
-package se.kth.iv1350.saleprocess.exceptions;
+package se.kth.iv1350.saleprocess.loggers;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -9,7 +9,7 @@ public class ExceptionLogger {
 
     private ExceptionLogger() {
         try {
-            logStream = new PrintWriter(new FileWriter("log.txt"), true);
+            logStream = new PrintWriter(new FileWriter("exceptionlog.txt"), true);
         } catch (IOException ioe) {
             System.out.println("CANNOT LOG.");
             ioe.printStackTrace();
