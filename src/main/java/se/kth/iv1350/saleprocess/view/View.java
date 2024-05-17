@@ -7,8 +7,12 @@ import se.kth.iv1350.saleprocess.exceptions.ExceptionLogger;
 public class View {
     private Controller controller;
 
+    private TotalRevenueView totalRevenueView;
+
     public View(Controller controller) {
         this.controller = controller;
+        totalRevenueView = new TotalRevenueView();
+        controller.registerObserver(totalRevenueView);
     }
 
     private static String formatPrice(int amount) {

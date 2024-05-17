@@ -1,6 +1,7 @@
 package se.kth.iv1350.saleprocess;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
 
@@ -84,5 +85,31 @@ public class ControllerTest {
         }
 
         assertEquals(threwException, true);
+    }
+
+    @Test
+    public void revenueChangeObservers() throws InvalidItemIdentifierException {
+        AccountingSystemHandler accountingSystemHandler = new AccountingSystemHandler();
+        DiscountRegistryHandler discountRegistryHandler = new DiscountRegistryHandler();
+        InventorySystemHandler inventorySystemHandler = new InventorySystemHandler();
+        PrinterHandler printerHandler = new PrinterHandler();
+        Controller controller = new Controller(accountingSystemHandler, discountRegistryHandler, inventorySystemHandler, printerHandler);
+        controller.startSale();
+
+        FakeObserver observer1 = new FakeObserver();
+        assertNull(observer1.getLastObservedTotalRevenue());
+        controller.registerObserver(observer1);
+
+        FakeObserver observer2 = new FakeObserver();
+        assertNull(observer2.getLastObservedTotalRevenue());
+        controller.registerObserver(observer2);
+
+        controller.registerItems("abc123", 1);
+
+        controller.endSale();
+        controller.registerPayment(12000);
+
+        assertEquals(observer1.getLastObservedTotalRevenue().intValue(), 2990);
+        assertEquals(observer2.getLastObservedTotalRevenue().intValue(), 2990);
     }
 }

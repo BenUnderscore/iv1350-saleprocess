@@ -1,4 +1,6 @@
 package se.kth.iv1350.saleprocess.controller;
+import java.util.ArrayList;
+
 import se.kth.iv1350.saleprocess.dto.ItemInfoDTO;
 import se.kth.iv1350.saleprocess.dto.ReceiptDTO;
 import se.kth.iv1350.saleprocess.dto.RunningStatusDTO;
@@ -9,6 +11,7 @@ import se.kth.iv1350.saleprocess.integrations.PrinterHandler;
 import se.kth.iv1350.saleprocess.exceptions.InvalidItemIdentifierException;
 import se.kth.iv1350.saleprocess.model.Sale;
 import se.kth.iv1350.saleprocess.model.SaleInfo;
+import se.kth.iv1350.saleprocess.model.TotalRevenueTracker;
 
 
 public class Controller {
@@ -22,12 +25,22 @@ public class Controller {
     // Models
     private SaleInfo saleInfo;
     private Sale sale;
+    private TotalRevenueTracker revenue;
+
+    // Observers
+    private ArrayList<Observer> observers;
     
     public Controller(AccountingSystemHandler acc, DiscountRegistryHandler disc, InventorySystemHandler inv, PrinterHandler printer){
         accountingSystemHandler = acc;
         discountRegistryHandler = disc;
         inventorySystemHandler = inv;
         printerHandler = printer;
+        revenue = new TotalRevenueTracker();
+        observers = new ArrayList<Observer>();
+    }
+
+    public void registerObserver(Observer observer) {
+        observers.add(observer);
     }
 
     /**
@@ -87,9 +100,15 @@ public class Controller {
         printerHandler.printReceipt(receipt);
         accountingSystemHandler.logSale(receipt);
         inventorySystemHandler.updateInventory(receipt.getItemList());
+        revenue.addRevenue(receipt.getPostDiscountPrice());
+        onTotalRevenueChanged();
 
         return receipt.getChange();
     }
 
-
+    private void onTotalRevenueChanged() {
+        for(Observer observer : observers) {
+            observer.onTotalRevenueChanged(revenue.getRevenue());
+        }
+    }
 }

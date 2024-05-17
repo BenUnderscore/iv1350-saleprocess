@@ -23,12 +23,12 @@ public class Program{
      * Creates integrations objects, view and controller, distributing relevant objects between them.
      * @return View object
      */
-    public static View startup(){
+    public static View startup() {
         AccountingSystemHandler accountingSystemHandler = new AccountingSystemHandler();
         DiscountRegistryHandler discountRegistryHandler = new DiscountRegistryHandler();
         InventorySystemHandler inventorySystemHandler = new InventorySystemHandler();
         PrinterHandler printerHandler = new PrinterHandler();
         Controller controller = new Controller(accountingSystemHandler, discountRegistryHandler, inventorySystemHandler, printerHandler);
-        return new View(controller);        
+        return new View(controller);
     }
 }
