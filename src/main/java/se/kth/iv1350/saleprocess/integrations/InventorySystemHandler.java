@@ -60,7 +60,7 @@ public class InventorySystemHandler {
      */
     public ItemInfoDTO getItem(String id) throws InvalidItemIdentifierException {
         if(id.equals("database offline")){
-            throw new DatabaseConnectionException("Database cannot be reached");
+            throw new DatabaseConnectionException("There are problems while connecting to the Inventory Database.");
         }
 
         ItemInfoDTO fetchedItem = database.getOrDefault(id, null);

@@ -3,7 +3,6 @@ package se.kth.iv1350.saleprocess.view;
 import se.kth.iv1350.saleprocess.controller.Controller;
 import se.kth.iv1350.saleprocess.dto.RunningStatusDTO;
 import se.kth.iv1350.saleprocess.exceptions.ExceptionLogger;
-import se.kth.iv1350.saleprocess.exceptions.InvalidItemIdentifierException;
 
 public class View {
     private Controller controller;
