@@ -2,6 +2,8 @@ package se.kth.iv1350.saleprocess.model;
 
 import se.kth.iv1350.saleprocess.dto.ItemInfoDTO;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Works with itemList. Can add items, calculate total price and create a saleInfo object
@@ -61,9 +63,10 @@ public class Sale {
     public SaleInfo finalizeSaleInfo(){
         int total = this.calculateTotal();
         
-        ItemInfoDTO[] itemArray = new ItemInfoDTO[itemList.size()];
-        itemArray = itemList.toArray(itemArray);
-        SaleInfo saleInfo = new SaleInfo(itemArray, total);
+        List<ItemInfoDTO> immutableItemList = Collections.unmodifiableList(itemList);
+        SaleInfo saleInfo = new SaleInfo(immutableItemList, total);
+
+        itemList = new ArrayList<ItemInfoDTO>();
 
         return saleInfo;
     }

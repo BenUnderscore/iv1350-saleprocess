@@ -1,6 +1,7 @@
 package se.kth.iv1350.saleprocess.integrations;
 
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import se.kth.iv1350.saleprocess.dto.ItemInfoDTO;
 import se.kth.iv1350.saleprocess.dto.ReceiptDTO;
@@ -10,7 +11,7 @@ public class PrinterHandler {
     public PrinterHandler() {
     }
 
-    private void appendItems(ItemInfoDTO[] items, StringBuilder stringBuilder) {
+    private void appendItems(List<ItemInfoDTO> items, StringBuilder stringBuilder) {
         for(ItemInfoDTO item : items) {
             int itemTotalPrice = item.getPrice() * item.getQuantity();
             stringBuilder.append(

@@ -1,5 +1,7 @@
 package se.kth.iv1350.saleprocess.integrations.discounts;
 
+import java.util.List;
+
 import se.kth.iv1350.saleprocess.dto.ItemInfoDTO;
 
 class ThresholdDiscount implements Discount {
@@ -11,7 +13,7 @@ class ThresholdDiscount implements Discount {
         this.percentage = percentage;
     }
 
-    public int getDiscount(String customerID, int total, ItemInfoDTO[] itemList) {
+    public int getDiscount(String customerID, int total, List<ItemInfoDTO> itemList) {
         if(total >= threshold) {
             return (total * percentage) / 100;
         }

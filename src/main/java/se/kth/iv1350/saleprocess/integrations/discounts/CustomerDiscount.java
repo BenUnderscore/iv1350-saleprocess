@@ -1,5 +1,7 @@
 package se.kth.iv1350.saleprocess.integrations.discounts;
 
+import java.util.List;
+
 import se.kth.iv1350.saleprocess.dto.ItemInfoDTO;
 
 class CustomerDiscount implements Discount{
@@ -12,7 +14,7 @@ class CustomerDiscount implements Discount{
     }
     
     @Override
-    public int getDiscount(String customerID, int total, ItemInfoDTO[] itemList){
+    public int getDiscount(String customerID, int total, List<ItemInfoDTO> itemList){
         if(this.customerID.equals(customerID)) { return (total * PERCENTAGE) / 100; }
         return 0;
     }

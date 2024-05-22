@@ -2,6 +2,8 @@ package se.kth.iv1350.saleprocess.integrations.discounts;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
+
 import org.junit.Test;
 
 import se.kth.iv1350.saleprocess.dto.ItemInfoDTO;
@@ -11,7 +13,8 @@ public class DiscountRegistryHandlerTest {
     public void inExampleData() {
         String customerId = "TheCoolerDante";
 
-        ItemInfoDTO[] items = new ItemInfoDTO[] {
+        ArrayList<ItemInfoDTO> items = new ArrayList<ItemInfoDTO>();
+        items.add(
             new ItemInfoDTO(
                 "Cool item",
                 "cold",
@@ -19,7 +22,9 @@ public class DiscountRegistryHandlerTest {
                 5000,
                 10,
                 4
-            ),
+            )
+        );
+        items.add(
             new ItemInfoDTO(
                 "Cooler item",
                 "very cold",
@@ -28,7 +33,7 @@ public class DiscountRegistryHandlerTest {
                 25,
                 1
             )
-        };
+        );
 
         int total = 30000;
         
@@ -42,7 +47,8 @@ public class DiscountRegistryHandlerTest {
     public void notInExampleData() {
         String customerId = "benedek";
 
-        ItemInfoDTO[] items = new ItemInfoDTO[] {
+        ArrayList<ItemInfoDTO> items = new ArrayList<ItemInfoDTO>();
+        items.add(
             new ItemInfoDTO(
                 "Cool item",
                 "cold",
@@ -50,7 +56,9 @@ public class DiscountRegistryHandlerTest {
                 5000,
                 10,
                 1
-            ),
+            )
+        );
+        items.add(
             new ItemInfoDTO(
                 "Cooler item",
                 "very cold",
@@ -59,7 +67,7 @@ public class DiscountRegistryHandlerTest {
                 25,
                 1
             )
-        };
+        );
 
         int total = 15000;
         

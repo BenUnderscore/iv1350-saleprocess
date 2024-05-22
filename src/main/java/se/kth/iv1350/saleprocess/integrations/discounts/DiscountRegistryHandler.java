@@ -1,6 +1,7 @@
 package se.kth.iv1350.saleprocess.integrations.discounts;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import se.kth.iv1350.saleprocess.dto.ItemInfoDTO;
 
@@ -39,7 +40,7 @@ public class DiscountRegistryHandler {
      * @param itemList Full item list of the sale
      * @return Amount of discount to apply to the total
      */
-    public int getDiscount(String customerID, int total, ItemInfoDTO[] itemList) {
+    public int getDiscount(String customerID, int total, List<ItemInfoDTO> itemList) {
         int maxDiscount = 0;
         for(Discount discount : discounts) {
             int discounted = discount.getDiscount(customerID, total, itemList);

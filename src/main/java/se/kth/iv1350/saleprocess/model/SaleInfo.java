@@ -1,23 +1,24 @@
 package se.kth.iv1350.saleprocess.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import se.kth.iv1350.saleprocess.integrations.discounts.DiscountRegistryHandler;
 import se.kth.iv1350.saleprocess.dto.ItemInfoDTO;
 import se.kth.iv1350.saleprocess.dto.ReceiptDTO;
 
 public class SaleInfo {
-    private ItemInfoDTO[] itemList;
+    private List<ItemInfoDTO> itemList;
     private int preDiscountPrice;
     private int postDiscountPrice;
 
-    public SaleInfo(ItemInfoDTO[] itemList, int totalPrice ){
+    public SaleInfo(List<ItemInfoDTO> itemList, int totalPrice ){
         this.itemList = itemList;
         this.preDiscountPrice = totalPrice;
         this.postDiscountPrice = totalPrice;
     }
 
-    public ItemInfoDTO[] getItemList(){
+    public List<ItemInfoDTO> getItemList(){
         return itemList;
     }
 
@@ -42,7 +43,7 @@ public class SaleInfo {
         return receipt;
     }
 
-    private int calculateTotalVat(ItemInfoDTO[] items) {
+    private int calculateTotalVat(List<ItemInfoDTO> items) {
         int total = 0;
         for(ItemInfoDTO item : items) {
             total += (item.getPrice() * item.getQuantity()) * item.getVat() / 100;

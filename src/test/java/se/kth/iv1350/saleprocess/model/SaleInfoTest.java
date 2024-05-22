@@ -6,6 +6,8 @@ import static org.junit.Assert.assertTrue;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Test;
 
@@ -20,12 +22,19 @@ public class SaleInfoTest {
     @Test
     public void createReceiptTest(){
 
-        ItemInfoDTO[] itemList = new ItemInfoDTO[] {
-            new ItemInfoDTO("VeryCoolPatch", "A patch that is very cool", "69nice", 6990, 5, 1),
-            new ItemInfoDTO("The Key", "Refreshing mocktail", "666key", 3050, 12, 10),
-            new ItemInfoDTO("Dragon Breath", "Hot lingering dragon breath", "420oof", 42060, 20, 1),
+        ArrayList<ItemInfoDTO> itemList = new ArrayList<ItemInfoDTO>();
+        itemList.add(
+            new ItemInfoDTO("VeryCoolPatch", "A patch that is very cool", "69nice", 6990, 5, 1)
+        );
+        itemList.add(
+            new ItemInfoDTO("The Key", "Refreshing mocktail", "666key", 3050, 12, 10)
+        );
+        itemList.add(
+            new ItemInfoDTO("Dragon Breath", "Hot lingering dragon breath", "420oof", 42060, 20, 1)
+        );
+        itemList.add(
             new ItemInfoDTO("Spaceship Engine", "Very powerful, makes amazing spaceship noises", "w0o0sh", 102500, 25, 1)
-        };
+        );
 
         int discount = 666;
         int total = 69 + 30 * 10 + 420 + 1025;
@@ -53,6 +62,6 @@ public class SaleInfoTest {
         assertEquals(receipt.getPostDiscountPrice(), postDiscountPrice);
         assertEquals(receipt.getAmountPaid(), paid);
         assertTrue(diffTime < 2);
-        assertArrayEquals(receipt.getItemList(), itemList);
+        assertArrayEquals(receipt.getItemList().toArray(), itemList.toArray());
     }
 }

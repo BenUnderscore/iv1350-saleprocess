@@ -1,6 +1,7 @@
 package se.kth.iv1350.saleprocess.integrations;
 
 import java.util.HashMap;
+import java.util.List;
 
 import se.kth.iv1350.saleprocess.dto.ItemInfoDTO;
 import se.kth.iv1350.saleprocess.exceptions.DatabaseConnectionException;
@@ -74,7 +75,7 @@ public class InventorySystemHandler {
      * Makes an update call to an external inventory system
      * @param itemList Full item list in a sale
      */
-    public void updateInventory(ItemInfoDTO[] itemList) {
+    public void updateInventory(List<ItemInfoDTO> itemList) {
         System.out.println("Inventory updated.");
     }
 }

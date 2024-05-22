@@ -1,5 +1,7 @@
 package se.kth.iv1350.saleprocess.integrations.discounts;
 
+import java.util.List;
+
 import se.kth.iv1350.saleprocess.dto.ItemInfoDTO;
 
 class ItemDiscount implements Discount {
@@ -11,7 +13,7 @@ class ItemDiscount implements Discount {
         this.discountPercentage = discountPercentage;
     }
 
-    public int getDiscount(String customerID, int total, ItemInfoDTO[] itemList) {
+    public int getDiscount(String customerID, int total, List<ItemInfoDTO> itemList) {
         int discountTotal = 0;
 
         for(ItemInfoDTO itemInfo : itemList) {
