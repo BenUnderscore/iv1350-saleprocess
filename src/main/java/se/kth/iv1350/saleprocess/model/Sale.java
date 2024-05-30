@@ -15,7 +15,6 @@ public class Sale {
         this.itemList = new ArrayList<ItemInfoDTO>();
     }
 
-
     /**
      * Adds a new item to the sale list. If an item is already in the list, the method will just increase the quantity of the object. Otherwise, it will add object to the list.
      * @param newItem The item to add/modify
@@ -36,6 +35,8 @@ public class Sale {
     }
 
     /**
+     * @param newQuantity updated quantity of the item
+     * @param item Scanned item
      * @return New ItemInfoDTO Object with updated quantity
      */
     private static ItemInfoDTO itemInfoWithQuantity(ItemInfoDTO item, int newQuantity){

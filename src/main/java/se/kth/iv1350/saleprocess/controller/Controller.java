@@ -1,5 +1,4 @@
 package se.kth.iv1350.saleprocess.controller;
-import java.util.ArrayList;
 
 import se.kth.iv1350.saleprocess.dto.ItemInfoDTO;
 import se.kth.iv1350.saleprocess.dto.ReceiptDTO;
@@ -8,9 +7,11 @@ import se.kth.iv1350.saleprocess.integrations.AccountingSystemHandler;
 import se.kth.iv1350.saleprocess.integrations.discounts.DiscountRegistryHandler;
 import se.kth.iv1350.saleprocess.integrations.InventorySystemHandler;
 import se.kth.iv1350.saleprocess.integrations.PrinterHandler;
+import se.kth.iv1350.saleprocess.exceptions.DatabaseConnectionException;
 import se.kth.iv1350.saleprocess.exceptions.InvalidItemIdentifierException;
 import se.kth.iv1350.saleprocess.model.Sale;
 import se.kth.iv1350.saleprocess.model.SaleInfo;
+import se.kth.iv1350.saleprocess.model.TotalRevenueObserver;
 import se.kth.iv1350.saleprocess.model.TotalRevenueTracker;
 
 
@@ -27,21 +28,14 @@ public class Controller {
     private Sale sale;
     private TotalRevenueTracker revenue;
 
-    // Observers
-    private ArrayList<Observer> observers;
-    
     public Controller(AccountingSystemHandler acc, DiscountRegistryHandler disc, InventorySystemHandler inv, PrinterHandler printer){
         accountingSystemHandler = acc;
         discountRegistryHandler = disc;
         inventorySystemHandler = inv;
         printerHandler = printer;
         revenue = new TotalRevenueTracker();
-        observers = new ArrayList<Observer>();
     }
 
-    public void registerObserver(Observer observer) {
-        observers.add(observer);
-    }
 
     /**
      * Creates new sale object with an empty item list
@@ -56,8 +50,9 @@ public class Controller {
      * @param quantity Amount of the same item
      * @return Running sale total price, item's price and item's description
      * @throws InvalidItemIdentifierException 
+     * @throws DatabaseConnectionException
      */
-    public RunningStatusDTO registerItems(String itemID, int quantity) throws InvalidItemIdentifierException {
+    public RunningStatusDTO registerItems(String itemID, int quantity) throws InvalidItemIdentifierException, DatabaseConnectionException {
         ItemInfoDTO newItem = inventorySystemHandler.getItem(itemID);
 
         sale.addItems(newItem, quantity);
@@ -101,14 +96,15 @@ public class Controller {
         accountingSystemHandler.logSale(receipt);
         inventorySystemHandler.updateInventory(receipt.getItemList());
         revenue.addRevenue(receipt.getPostDiscountPrice());
-        onTotalRevenueChanged();
 
         return receipt.getChange();
     }
 
-    private void onTotalRevenueChanged() {
-        for(Observer observer : observers) {
-            observer.onTotalRevenueChanged(revenue.getRevenue());
-        }
+    /**
+     * Registers an observer that gets invoked when a the registered total revenue changes.
+     * @param observer The observer to be invoked
+     */
+    public void registerTotalRevenueObserver(TotalRevenueObserver observer){
+        revenue.registerObserver(observer);
     }
 }

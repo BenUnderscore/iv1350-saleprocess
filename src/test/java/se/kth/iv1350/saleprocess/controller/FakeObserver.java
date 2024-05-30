@@ -1,6 +1,8 @@
 package se.kth.iv1350.saleprocess.controller;
 
-public class FakeObserver implements Observer {
+import se.kth.iv1350.saleprocess.model.TotalRevenueObserver;
+
+public class FakeObserver implements TotalRevenueObserver {
     private Integer lastObservedTotalRevenue;
 
     public Integer getLastObservedTotalRevenue() {
@@ -8,6 +10,6 @@ public class FakeObserver implements Observer {
     }
 
     public void onTotalRevenueChanged(int newTotalRevenue) {
-        lastObservedTotalRevenue = new Integer(newTotalRevenue);
+        lastObservedTotalRevenue = Integer.valueOf(newTotalRevenue);
     }
 }

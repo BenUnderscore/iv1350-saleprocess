@@ -18,14 +18,21 @@ public class SaleInfo {
         this.postDiscountPrice = totalPrice;
     }
 
+    /**
+     * @return list of items
+     */
     public List<ItemInfoDTO> getItemList(){
         return itemList;
     }
-
+    /**
+     * @return price before the discounts are applied
+     */
     public int getPreDiscountPrice() {
         return preDiscountPrice;
     }
-
+    /**
+     * @return price after the discounts were applied
+     */
     public int getPostDiscountPrice() {
         return postDiscountPrice;
     }
@@ -61,8 +68,4 @@ public class SaleInfo {
         int discount = discountRegistryHandler.getDiscount(customerID, preDiscountPrice, itemList);
         postDiscountPrice = preDiscountPrice - discount;
     } 
-
-    public void applyDiscountDummy(int discount){
-        postDiscountPrice = preDiscountPrice - discount;
-    }
 }

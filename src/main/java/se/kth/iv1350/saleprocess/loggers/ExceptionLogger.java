@@ -18,10 +18,18 @@ public class ExceptionLogger {
 
     private static ExceptionLogger instance = new ExceptionLogger();
     
+    /**
+     * Singleton instance
+     * @return global instance of the ExceptionLogger
+     */
     public static ExceptionLogger getInstance() {
         return instance;
     }
 
+    /**
+     * Prints exception message and stack trace.
+     * @param exception Exception object
+     */
     public void logException(Exception exception) {
         logStream.println(exception.getMessage());
         exception.printStackTrace(logStream);

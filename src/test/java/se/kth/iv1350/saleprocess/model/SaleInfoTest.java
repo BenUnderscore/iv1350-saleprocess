@@ -13,6 +13,7 @@ import org.junit.Test;
 
 import se.kth.iv1350.saleprocess.dto.ItemInfoDTO;
 import se.kth.iv1350.saleprocess.dto.ReceiptDTO;
+import se.kth.iv1350.saleprocess.integrations.discounts.DiscountRegistryHandler;
 
 public class SaleInfoTest {
     public SaleInfoTest() {
@@ -36,7 +37,7 @@ public class SaleInfoTest {
             new ItemInfoDTO("Spaceship Engine", "Very powerful, makes amazing spaceship noises", "w0o0sh", 102500, 25, 1)
         );
 
-        int discount = 666;
+        int discount = 181;
         int total = 69 + 30 * 10 + 420 + 1025;
         int vat = 0;
         for(ItemInfoDTO item : itemList) {
@@ -49,18 +50,18 @@ public class SaleInfoTest {
         LocalDateTime currentDate = LocalDateTime.now();
         
         SaleInfo saleInfo = new SaleInfo(itemList, total);
-        
-        saleInfo.applyDiscountDummy(discount);
+        DiscountRegistryHandler discountRegistryHandler = new DiscountRegistryHandler();
+        saleInfo.applyDiscounts(discountRegistryHandler, "dante");
         
         ReceiptDTO receipt = saleInfo.createReceipt(paid);
 
         long diffTime = currentDate.until(receipt.getDateAndTime(), ChronoUnit.SECONDS);
         
-        assertEquals(receipt.getChange(), change);
-        assertEquals(receipt.getVAT(), vat);
-        assertEquals(receipt.getPreDiscountPrice(), total);
-        assertEquals(receipt.getPostDiscountPrice(), postDiscountPrice);
-        assertEquals(receipt.getAmountPaid(), paid);
+        assertEquals(change, receipt.getChange());
+        assertEquals(vat, receipt.getVAT());
+        assertEquals(total, receipt.getPreDiscountPrice());
+        assertEquals(postDiscountPrice, receipt.getPostDiscountPrice());
+        assertEquals(paid, receipt.getAmountPaid());
         assertTrue(diffTime < 2);
         assertArrayEquals(receipt.getItemList().toArray(), itemList.toArray());
     }

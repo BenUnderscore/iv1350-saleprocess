@@ -11,10 +11,13 @@ import se.kth.iv1350.saleprocess.util.PriceUtilities;
 public class View {
     private Controller controller;
 
+    /**
+     * connects controller and view
+     */
     public View(Controller controller) {
         this.controller = controller;
-        controller.registerObserver(new TotalRevenueView());
-        controller.registerObserver(new TotalRevenueFileOutput());
+        controller.registerTotalRevenueObserver(new TotalRevenueView());
+        controller.registerTotalRevenueObserver(new TotalRevenueFileOutput());
     }
 
 
@@ -27,6 +30,10 @@ public class View {
         System.out.println("-----------------------------------------");
     }
 
+    /**
+     * checks exceptions and prints the appropriate message
+     * @param e, the exception
+     */
     private void logException(Exception e) {
         String message = "Oh noes";
         if(e instanceof DatabaseConnectionException) {
@@ -66,6 +73,10 @@ public class View {
         System.out.println("-----------------------------------------");
     }
 
+    /** 
+     * requestsDiscount, sends the ID so that it can be registered by the discount database
+     * @param customerID The ID of current customer
+    */
     public void requestDiscount(String customerID){
         int postDiscountTotal = controller.requestDiscount(customerID);
         System.out.println("Discounts were applied, new price: " + PriceUtilities.formatPrice(postDiscountTotal) + " kr.");

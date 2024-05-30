@@ -57,9 +57,10 @@ public class InventorySystemHandler {
      * Fetches an item from an external inventory system
      * @param id Item's identification
      * @return An ItemInfo object
-     * @throws InvalidItemIdentifierException
+     * @throws InvalidItemIdentifierException when the item ID is invalid
+     * @throws DatabaseConnectionException when the database could not be connected to
      */
-    public ItemInfoDTO getItem(String id) throws InvalidItemIdentifierException {
+    public ItemInfoDTO getItem(String id) throws InvalidItemIdentifierException, DatabaseConnectionException {
         if(id.equals("database offline")){
             throw new DatabaseConnectionException("There are problems while connecting to the Inventory Database.");
         }

@@ -13,6 +13,7 @@ class ItemDiscount implements Discount {
         this.discountPercentage = discountPercentage;
     }
 
+    @Override
     public int getDiscount(String customerID, int total, List<ItemInfoDTO> itemList) {
         int discountTotal = 0;
 

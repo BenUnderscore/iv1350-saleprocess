@@ -97,11 +97,11 @@ public class ControllerTest {
 
         FakeObserver observer1 = new FakeObserver();
         assertNull(observer1.getLastObservedTotalRevenue());
-        controller.registerObserver(observer1);
+        controller.registerTotalRevenueObserver(observer1);
 
         FakeObserver observer2 = new FakeObserver();
         assertNull(observer2.getLastObservedTotalRevenue());
-        controller.registerObserver(observer2);
+        controller.registerTotalRevenueObserver(observer2);
 
         controller.registerItems("abc123", 1);
 

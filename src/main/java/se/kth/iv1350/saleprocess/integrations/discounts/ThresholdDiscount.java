@@ -13,6 +13,7 @@ class ThresholdDiscount implements Discount {
         this.percentage = percentage;
     }
 
+    @Override
     public int getDiscount(String customerID, int total, List<ItemInfoDTO> itemList) {
         if(total >= threshold) {
             return (total * percentage) / 100;
