@@ -5,15 +5,22 @@ package se.kth.iv1350.saleprocess.exceptions;
 */
 public class InvalidItemIdentifierException extends Exception
 {
+    private String itemId;
     private static String createMessage(String id) {
         return "Item Identifier \"" + id + "\" is not found in the Inventory System!";
     }
 
     public InvalidItemIdentifierException(String invalidId) {
         super(createMessage(invalidId));
+        itemId = invalidId;
     }
 
     public InvalidItemIdentifierException(String invalidId, Exception cause) {
         super(createMessage(invalidId), cause);
+        itemId = invalidId;
+    }
+
+    public String getInvalidId() {
+        return itemId;
     }
 }
