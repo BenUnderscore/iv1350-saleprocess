@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatter;
 import se.kth.iv1350.saleprocess.model.TotalRevenueObserver;
 import se.kth.iv1350.saleprocess.util.PriceUtilities;
 
-public class TotalRevenueFileOutput implements TotalRevenueObserver {
+public class TotalRevenueFileOutput extends TotalRevenueObserver {
     private PrintWriter logStream;
 
     public TotalRevenueFileOutput() {
@@ -22,8 +22,13 @@ public class TotalRevenueFileOutput implements TotalRevenueObserver {
     }
 
     @Override
-    public void onTotalRevenueChanged(int newTotalRevenue) {
+    protected void doShowTotalIncome() throws Exception {
         String dateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm"));
-        logStream.println("[" + dateTime + "] New total revenue: " + PriceUtilities.formatPrice(newTotalRevenue) + " SEK");
+        logStream.println("[" + dateTime + "] New total revenue: " + PriceUtilities.formatPrice(getTotalRevenue()) + " SEK");
+    }
+
+    @Override
+    protected void handleErrors(Exception e) {
+        ExceptionLogger.getInstance().logException(e);
     }
 }
