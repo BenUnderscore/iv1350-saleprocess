@@ -2,6 +2,8 @@ package se.kth.iv1350.saleprocess.integrations;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 
 import org.junit.Test;
@@ -40,5 +42,17 @@ public class InventorySystemHandlerTest {
         }
 
         assertEquals(threwException, true);
+    }
+    
+    @Test
+    public void updateInventoryTest() {
+        InventorySystemHandler handler = new InventorySystemHandler();
+
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+
+        handler.updateInventory(null);
+        assertEquals("Inventory updated.\n", out.toString());
+
     }
 }
