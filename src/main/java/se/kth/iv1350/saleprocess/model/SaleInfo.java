@@ -3,9 +3,9 @@ package se.kth.iv1350.saleprocess.model;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import se.kth.iv1350.saleprocess.integrations.discounts.DiscountRegistryHandler;
 import se.kth.iv1350.saleprocess.dto.ItemInfoDTO;
 import se.kth.iv1350.saleprocess.dto.ReceiptDTO;
+import se.kth.iv1350.saleprocess.integrations.discounts.DiscountRegistryHandler;
 
 public class SaleInfo {
     private List<ItemInfoDTO> itemList;
@@ -61,7 +61,7 @@ public class SaleInfo {
 
     /**
      * Applies all eligible discounts to the sale, updating the post-discount price
-     * @param DiscountRegistryHandler Discount registry handler
+     * @param discountRegistryHandler Discount registry handler
      * @param customerID Customer's identification
      */
     public void applyDiscounts(DiscountRegistryHandler discountRegistryHandler, String customerID) {

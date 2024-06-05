@@ -1,10 +1,8 @@
 package se.kth.iv1350.saleprocess.model;
 
-import static org.junit.Assert.assertEquals;
-
-import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 import se.kth.iv1350.saleprocess.dto.ItemInfoDTO;
